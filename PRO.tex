@@ -1,0 +1,513 @@
+\documentclass[11pt,twoside,a4paper]{book}  
+% definice dokumentu
+\usepackage[czech, english]{babel}
+\usepackage[T1]{fontenc} 				% pouzije EC fonty 
+\usepackage[utf8]{inputenc} 			% utf8 kódování vstupu 
+\usepackage[square, numbers]{natbib}	% sazba pouzite literatury
+\usepackage{indentfirst} 				% 1. odstavec jako v cestine, pro práci v aj možno zakomentovat
+\usepackage{fancyhdr}					% tisk hlaviček a patiček stránek
+\usepackage{nomencl} 					% umožňuje snadno definovat zkratky a jejich seznam
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% informace o práci
+\newcommand\WorkTitle{Slide It}		% název
+\newcommand\FirstandFamilyName{Radek Ježdík}															% autor
+\newcommand\Supervisor{Ing. Ondřej Macek}															% vedoucí
+
+\newcommand\TypeOfWork{Semestrální projekt}	% typ práce [Diplomová práce | Bakalářská práce | Bachelor's Project | Master's Thesis ]	
+
+% Nastavte následují podle vašeho oboru a programu (pomoc hledejte na http://www.fel.cvut.cz/cz/education/bk/prehled.html)								
+\newcommand\StudProgram{Softwarové technologie a management, Bakalářský}	% program
+\newcommand\StudBranch{Softwarové inženýrství}           					% obor
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% minimální importy
+\usepackage{graphicx}					% pro vkládání obrázků
+\usepackage{k336_thesis_macros} 		% specialni makra pro formatovani DP a BP
+\usepackage[
+pdftitle={\WorkTitle},				% nastaví v informacích o pdf název
+pdfauthor={\FirstandFamilyName},	% nastaví v informacích o pdf autora
+colorlinks=true,					% před tiskem doporučujeme nastavit na false, aby odkazy a url nebyly šedé při ČB tisku
+breaklinks=true,
+urlcolor=red,
+citecolor=blue,
+linkcolor=blue,
+unicode=true,
+]
+{hyperref}								% pro zobrazování "prokliknutelných" linků 
+
+% rozšiřující importy
+\usepackage{listings} 			%slouží pro tisk zdrojových kódů se syntax higlighting
+\usepackage{algorithmicx} 		%slouží pro zápis algoritmů
+\usepackage{algpseudocode} 		%slouží pro výpis pseudokódu
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% příkazy šablony
+\makenomenclature								% při překladu zajistí vytvoření pracovního souboru se seznamem zkratek
+
+\let\oldUrl\url									% url adresy budou zobrazeny: <url> 
+\renewcommand\url[1]{<\texttt{\oldUrl{#1}}>}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% vaše vlastní příkazy
+\newcommand*{\nomExpl}[2]{#2 (#1)\nomenclature{#1}{#2}} 	% usnadňuje zápis zkratek : Slova ke Zkrácení (SZ)
+\newcommand*{\nom}[2]{#1 \nomenclature{#1}{#2}} 			% usnadňuje zápis zkratek : SZ
+
+
+\usepackage{nameref}
+
+
+\lstset{
+	literate=%
+		{á}{{\'a}}1
+		{í}{{\'i}}1
+		{é}{{\'e}}1
+		{ý}{{\'y}}1
+		{ú}{{\'u}}1
+		{ó}{{\'o}}1
+		{ě}{{\v{e}}}1
+		{š}{{\v{s}}}1
+		{č}{{\v{c}}}1
+		{ř}{{\v{r}}}1
+		{ž}{{\v{z}}}1
+		{ď}{{\v{d}}}1
+		{ť}{{\v{t}}}1
+		{ň}{{\v{n}}}1
+		{ů}{{\r{u}}}1
+		{Á}{{\'A}}1
+		{Í}{{\'I}}1
+		{É}{{\'E}}1
+		{Ý}{{\'Y}}1
+		{Ú}{{\'U}}1
+		{Ó}{{\'O}}1
+		{Ě}{{\v{E}}}1
+		{Š}{{\v{S}}}1
+		{Č}{{\v{C}}}1
+		{Ř}{{\v{R}}}1
+		{Ž}{{\v{Z}}}1
+		{Ď}{{\v{D}}}1
+		{Ť}{{\v{T}}}1
+		{Ň}{{\v{N}}}1
+		{Ů}{{\r{U}}}1
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% vlastní dokument
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%% 
+	% nastavení jazyka, kterým je práce psána
+	\selectlanguage{czech}	% podle jazyka práce nastavte na [czech | english]
+	\translate				% nastaví české nebo anglické popisy (např. katedra -> department); viz k336_thesis_macros
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%    
+	% Poznamky ke kompletaci prace
+	% Nasledujici pasaz uzavrenou v {} ve sve praci samozrejme 
+	% zakomentujte nebo odstrante. 
+	% Ve vysledne svazane praci bude nahrazena skutecnym 
+	% oficialnim zadanim vasi prace.
+	{
+	\pagenumbering{roman} \cleardoublepage \thispagestyle{empty}
+	\chapter*{Zadání projektu}
+	Vytvořte nástroj pro tvorbu a sdílení HTML5 prezentací na webu. Webový backend umožní  tvorbu a editaci slidů a jejich sdílení. Pro prezentaci použijte vhodnou JavaScriptovou knihovnu, kterou rozšiřte o možnost testování čtenářů prezentace. Další požadavky sesbírejte na základě vytvořeného prototypu.
+	\newpage
+	}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%    
+	% Titulni stranka / Title page 
+	\coverpagestarts
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+	% Poděkovani / Acknowledgements 
+
+	\acknowledgements
+	\noindent
+	Zde můžete napsat své poděkování, pokud chcete a máte komu děkovat.
+
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%   
+	% Prohlášení / Declaration 
+
+	\declaration{V~Praze dne 7.\,1.\,2013}
+	%\declaration{In Kořenovice nad Bečvárkou on May 15, 2008}
+
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+	% Abstrakt / Abstract 
+ 
+	\abstractpage
+
+	Translation of Czech abstract into English.
+
+	% Prace v cestine musi krome abstraktu v anglictine obsahovat i
+	% abstrakt v cestine.
+	\vglue60mm
+
+	\noindent{\Huge \textbf{Abstrakt}}
+	\vskip 2.75\baselineskip
+
+	\noindent
+	Cílem projektu bylo vytvořit webový portál, který bude poskytovat nástroje pro tvorbu a sdílení prezentací postavených na technologiích HTML5. Požadavkem bylo využít potenciálu HTML5 a JavaScriptu ke zvýšení interaktivity prezentace s~uživatelem.
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%    
+	% obsahy a seznamy
+	\tableofcontents		% Obsah / Table of Contents 
+
+	% pokud v práci nejsou obrázky nebo tabulky - odstraňte jejich seznam
+	\listoffigures			% Obsah / Table of Contents 
+	\listoftables			% Seznam tabulek / List of Tables
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%% 
+	% začátek textu  
+	\mainbodystarts
+
+
+
+\chapter{Úvod}
+Tento projekt má za cíl vytvořit webový portál, který uživatelům usnadní nejen snadné sdílení prezentací, ale také jejich tvorbu. Prezentace by se měly zaměřovat na podání informací a na případné testování uživatelů z nově nabytých vědomostí. Prezentace by tak měly sloužit jak přednášejícím, tak posluchačům či žákům. Pro zobrazení prezentace bude využita rodina technologií HTML5 a JavaScriptové knihovny.
+
+
+
+\chapter{Analýza}
+V analýze jsem zjišťoval, jak se prezentace postavené na HTML tvoří, a porovnával různé knihovny, kterou tuto funkčnost zajišťují.
+
+
+\section{HTML5 prezentace}
+Prezentace založené na HTML se z pohledu kódu podobají běžné webové stránce. K~popisu snímků se používají sémantické značky HTML (HyperText Markup Language) a pro změnu vzhledu se používá CSS (Cascading Style Sheets). K~oživení takovéto stránky a~vytvoření dojmu prezentace a přechodů mezi snímky je pak potřeba JavaScript.
+
+
+\section{Výběr JavaScriptové knihovny}
+Pro takto vytvořené prezentace jsem se rozhodl použít už hotovou a ověřenou knihovnu. Knihoven pro zobrazení prezentací založených na (X)HTML bylo vytvořeno mnoho (viz \cite{htmlslideshowweb}). Většina z nich je ovšem už zastaralá, nefunkční nebo neodpovídající mým představám. Za zmínku stojí několik zdařilých knihoven, které se objevily po uvedení podpory HTML5 v~prohlížečích
+
+\begin{itemize}
+\item reveal.js
+\item impress.js
+\item Google I/O HTML5 slide template
+\item deck.js
+\end{itemize}
+
+\subsection{Reveal.js}
+Kromě posunu snímků horizontálně, podporuje také vnořené snímky, na které se dostaneme posunem dolů nebo nahoru. Má několik zajímavých rozšíření, např. podpora syntaxe Markdown a barevné zvýraznění kódu programovacích jazyků pomocí knihovny highlight.js. Umožňuje také v novém okně zobrazit aktuální a následující snímek včetně poznámek přednášejícího.
+
+\subsection{Impress.js}
+U impress.js už z~názvu vyplývá, že bude sloužit hlavně k~tomu, aby oslnil posluchače. To rozhodně dělá díky bohatým transformacím při přechodu na jednotlivé snímky. Ty jsou rozloženy v~prostoru, jak 2D tak i 3D, o různých velikostech a při přechodu mezi snímky se kamera efektně otáčí a přesouvá. Pro naše účely je ale až moc složitý (hlavně pro určení pozic snímků a transformací) a pro informativní prezentace se nehodí.
+
+\subsection{Google I/O HTML5 slide template}
+HTML5 šablona od Googlu je z~výše zmíněných knihoven nejjednodušší co se týče vzhledu, nicméně podporuje všechny
+důležité funkce. Nevýhodou je, že svázána se stylem Googlu a lze jej měnit pouze přepsáním CSS pravidel.
+
+\subsection{Deck.js}
+Poslední knihovna deck.js umí vše, co umí šablona od Googlu. Je napsaná v jQuery a je velmi dobře zdokumentovaná a rozšiřitelná. Výhodou je také dvojí licence MIT nebo GPL.
+
+\subsection{Zhodnocení}
+Pro účely tohoto projektu jsem se rozhodl použít deck.js. Reveal.js má sice už v~základu podporu pro Markdown a barevné
+zvýraznění syntaxe, ale v~budoucnu pro mne mohly nastat jistá omezení při implementaci ostatní funkčnosti.
+
+
+\section{Webový portál}
+Pro uživatele má portál sloužit jako prostředník pro sdílení prezentací – ať už v~rámci portálu mezi jeho uživateli nebo
+posíláním URL odkazů na prezentace v~emailech, příspěvcích na Facebooku nebo Twitteru atp. – a také k~tvorbě nových
+prezentací. V principu se tak bude podobat portálům jako YouTube, SlideShare nebo GitHub, které se zaměřují na vystavení vlastní tvorby a její sdílení.
+
+\section{Editor}
+Důležitou částí tohoto projektu byl editor pro úpravy prezentace. Jelikož je prezentace tvořena pomocí HTML, nabízí se
+několik možností, jak editaci pojmout:
+
+\begin{enumerate}
+\item psání samotného HTML kódu
+\item editor WYSIWYG (What You See Is What You Get)
+\item jednoduchý textový značkovací jazyk (lightweight markup language)
+\end{enumerate}
+
+Psaní samotného HTML kódu bylo vyloučeno okamžitě. HTML není nijak úsporný značkovací jazyk a pro lidi neznalé HTML by
+byl překážkou. Na druhou stranu ale poskytuje největší možnou kontrolu nad tím, jak se má prezentace chovat či jak má
+vypadat. Kdyby ovšem editor měl být založen pouze na psaní HTML kódu, nebyl by vůbec potřeba. Pro mnoho lidí by pak bylo
+výhodnější použít nástroje, na které jsou zvyklí, a pak pouze nahrát hotovou prezentaci na web.
+
+Konečné rozhodnutí, která z možností byla použita, je popsáno v~kapitole \nameref{chap:realizace}.
+
+
+\section{Rešerše existující řešení}
+Během analýzy jsem také hledal a zkoušel již existující projekty podobné tomuto.
+
+\subsection{SlideShare}
+SlideShare je na internetu velmi známý webový portál pro sdílení prezentací. Jeho nevýhodou ovšem je, že
+prezentace jsou velmi statické – bez animací a bez větší interaktivity s~uživatelem (podporuje akorát kliknutí na
+odkaz). Další nevýhoda je, že prezentace nelze na portálu přímo tvořit, lze je pouze nahrávat ve formátech PDF, PPT a
+dalších z~lokálního uložiště. Jakákoliv změna v~prezentaci se tak musí nahrát znovu.
+
+\subsection{Prezi}
+Prezi funguje na podobném principu jako SlideShare, ale zaměřuje se daleko více na grafickou stránku a zakládá si na
+kreativitě uživatelů a vyjádření jejich idejí pomocí celkového vzhledu prezentace. Prezentace se značně liší od běžných
+prezentací, které známe např. z~Microsoft PowerPoint. Jejich použití se hodí hlavně pro vyjádření nějaké myšlenky, ale už ne tolik k~podání nějakých informací.
+
+\subsection{Rvl.io}
+Tento portál se nejvíce podobá zadání tohoto projektu a možnosti jeho využití jsou prakticky stejné. Umožňuje sdílení prezentací a jejich tvorbu. Pro zobrazení prezentací používá již zmíněnou knihovnu reveal.js od stejného autora. Tento portál je velmi mladý a uveden byl po měsíci od započetí práce na tomto projektu. Služba byla v~době psaní této práce stále ve fázi beta testování.
+
+
+\chapter{Případy užití}
+Následující odstavce popisují, které role se při použití systému objeví a jaké tyto role mají práva či možnosti využití systému.\\\\
+
+\noindent Jako \textbf{nepřihlášený uživatel} chci mít možnost:
+\begin{itemize}
+	\item \textbf{prohlížet veřejně dostupné prezentace}, k~tomu použiji 
+		\begin{itemize}
+			\item vyhledávací formulář na webu
+			\item adresu URL, kterou jsem dostal jiným komunikačním kanálem
+		\end{itemize}
+	\item \textbf{vyhledat prezentace} vyhledávacím formulářem podle názvu nebo autora, abych si mohl
+		\begin{itemize}
+			\item prohlédnout hledanou prezentaci
+			\item přečíst komentáře pod prezentací
+			\item podívat se na prezentace hledaného uživatele
+		\end{itemize}
+	\item \textbf{přihlásit se} do systému pomocí přihlašovacího formuláře, abych získal oprávnění přihlášeného uživatele (viz níže)
+	\item \textbf{registrovat se} do systému pomocí registračního formuláře, abych se mohl přihlásit a získat tak oprávnění
+\end{itemize}
+
+
+\noindent Jako \textbf{přihlášený uživatel} chci mít možnost:
+\begin{itemize}
+	\item \textbf{vytvářet} prezentace pomocí editoru
+	\item \textbf{posílat komentáře} k~prezentacím, ke kterým mám přístup, pomocí formuláře pod prezentací
+	\item \textbf{prohlížet veřejné a mně sdílené} prezentace
+	\item \textbf{vyhledat prezentace} vyhledávacím formulářem podle názvu nebo autora, abych si mohl (včetně toho, co může nepřihlášený uživatel):
+		\begin{itemize}
+		\item \textbf{sledovat nebo zrušit sledování} hledaného uživatele
+		\end{itemize}
+	\item \textbf{vidět seznam mně sdílených prezentací}
+	\item \textbf{vidět seznam veřejných prezentací} uživatelů, které \textbf{sleduji}
+	\item \textbf{odhlásit se} 
+\end{itemize}
+
+
+\noindent Jako \textbf{autor prezentace} chci mít možnost:
+\begin{itemize}
+	\item \textbf{upravit prezentaci }v~editoru, abych opravil chybu, či ji o něco doplnil
+	\item \textbf{smazat prezentaci}
+	\item \textbf{smazat jakýkoliv komentář} k~vlastní prezentaci
+	\item \textbf{sdílet prezentaci} ostatním uživatelům portálu
+\end{itemize}
+
+
+\noindent Jako \textbf{autor komentáře} chci mít možnost:
+\begin{itemize}
+	\item smazat komentář
+\end{itemize}
+
+
+\chapter{Doménový model}
+\begin{figure}[ht]
+	\begin{center}
+		\includegraphics[width=14cm]{PRO-img/PRO-img001.png}
+		\caption{Diagram doménového modelu}
+		\label{fig:domainModel}
+	\end{center}
+\end{figure}
+
+\section{Uživatel}
+Registrovaný a přihlášený uživatel má výhody oproti nepřihlášenému (viz výše).
+
+Pro úspěšnou registraci uživatele do systému musí nepřihlášený uživatel zadat:
+
+\begin{itemize}
+	\item \textbf{uživatelské jméno}, pod kterým se bude prezentovat a přihlašovat. Stejné uživatelské jméno musí být v systému registrováno jenom jednou
+	\item \textbf{e-mail}, který nebude zveřejněn a bude sloužit pro aktivaci účtu a případně bude informačním kanálem (notifikace, změna hesla, apod.)
+	\item \textbf{heslo}, které bude chránit jeho účet (min. 4 znaky)
+\end{itemize}
+Uživatelé se mohou navzájem sledovat. Uživatel je pak snadněji upozorněn na nové prezentace od sledovaných uživatelů.
+
+\section{Prezentace}
+Prezentace představuje jednu prezentaci, kterou uživatel pomocí systému vytvořil (je jejím autorem). Má tyto povinné
+vlastnosti:
+
+\begin{itemize}
+	\item \textbf{název}, pod kterým se daná prezentace bude zobrazovat ve výpisech, a s tím související:
+	\item \textbf{slug} - zjednodušený název (malá písmena anglické abecedy, čísla a pomlčky), pod kterým bude prezentace dostupná přes adresu URL
+	\item \textbf{obsah}, jenž představuje složitější objekt textů jednotlivých snímků a různých nastavení prezentace
+\end{itemize}
+Prezentace může být sdílena ostatním uživatelům portálu.
+
+\section{Komentář}
+Komentář je uživatelem napsaná poznámka k nějaké prezentaci. Komentář může vkládat každý přihlášený uživatel. Povinnými
+vlastnostmi jsou:
+
+\begin{itemize}
+	\item \textbf{text komentáře} – obsah zprávy
+	\item \textbf{datum a čas}, kdy byl komentář vložen
+\end{itemize}
+Komentář se váže k~jedné prezentaci a jednomu uživateli (autorovi komentáře).
+
+
+
+\chapter{Návrh}
+
+\section{Serverová část}
+Webový back-end jsem se rozhodl napsat v~PHP s~použitím českého frameworku Nette, s kterým mám dobré zkušenosti. Nette framework mi ušetřil spoustu času, protože všechny důležité funkce, které bych jinak musel řešit a ladit vlastními silami, zvládá elegantně již v~základu. Jeho použití je jednoduché a přímočaré a navíc je velmi dobře otestovaný (mnoha uživateli i vlastními testy). Pro uchování dat byla použita databáze MySQL.
+
+
+\section{Klientská část}
+Front-end je pak poháněn JavaScriptem s~frameworkem jQuery. Pro vzhled a grafické uživatelské rozhraní byl použit framework Bootstrap, který velmi usnadnil prototypování portálu bez nutnosti tvořit a ladit vlastní vzhled. Výhodou je i to, že Bootstrap poskytuje responsivní design a tak by se měl web chovat a zobrazovat dobře i na mobilních zařízeních.
+
+Pro zobrazení prezentací byla použita již zmíněná knihovna deck.js.
+
+
+\section{Editor}
+Editoru jsem přikládal větší význam, a proto používá pár technologií navíc. Jako nejdůležitější se ukázalo použití JavaScriptového MVC frameworku AngularJS. Jeho hlavní předností je dvoucestné provázání dat mezi pohledem (view) a modelem. Každá změna v~modelu se automaticky propaguje do pohledu a naopak. Snižuje se tak množství kódu, který otrocky nastavuje nebo zobrazuje data při jednotlivé změně.
+
+Pro panel nástrojů, který uživateli ulehčí práci se zdrojovým~textem ve formátu~Texy!, byla použita knihovna Texyla.
+
+
+
+\chapter{Realizace} \label{chap:realizace}
+V~první fázi vývoje se počítalo s~použitím WYSIWYG editoru pro úpravu snímků. Existuje mnoho knihoven, které WYSIVYG
+editor různě implementují. Protože ale neexistuje žádný standard pro přímou editaci kódu HTML, každý prohlížeč se chová
+trochu jinak a zároveň každá knihovna si různé věci implementuje po svém.
+
+Nejdříve jsem zkoušel použít pro editaci zdrojového HTML kódu prezentace knihovnu Aloha Editor. Kromě potíží se
+zobrazením panelu nástrojů byla největším problémem licence (pozn.: nedávno byla licence změněna na GPLv2).
+
+Přešel jsem tedy na editor Mercury, který se zdál být vhodnější a komplexnější. I když je to JavaScriptová knihovna,
+byla vyvíjena v~Ruby pro použití v~Rails aplikacích a tak bylo hodně věcí přizpůsobeno těmto technologiím (například
+počítala s~partial pohledy, které se posílají AJAXem ze serveru). Nicméně knihovna není na jazyce Ruby závislá a lze ji
+použít bez něj.
+
+Zde se ale po chvíli objevily problémy technického rázu – prohlížeče se právě díky neexistujícímu
+standardu chovaly rozdílně nebo se nechovaly podle očekávání. Výsledkem pak byl například špatný HTML kód nebo kód,
+který se už nedal nijak pomocí editoru opravit ani smazat. Jedním z~největších problémů bylo vkládání nového řádku.
+Prohlížeč někdy vložil značku odřádkování {\textless}br{\textgreater} někdy nový odstavec {\textless}p{\textgreater}.
+Chování tak nebylo předvídatelné. Objevily se i další chyby/bugy v~použitelnosti, na které jsem se pak snažil
+upozornit\footnote{viz \url{https://github.com/jejacks0n/mercury/issues/253}} autora knihovny. Chyba dosud nebyla opravena.
+
+Všechny tyto problémy nakonec vyústily k rozhodnutí použít značkovací jazyk, tzv. Lightweight markup language, který
+převádí text do HTML. V~poslední době získávají tyto jazyky velkou popularitu kvůli jednoduchosti a velmi dobré podobě
+výsledného HTML kódu. Asi nejvíce používaný takovýto jazyk je, hlavně ve světě IT, Markdown, který byl původně napsán v
+Perl. Vzniklo mnoho portů této knihovny do různých jazyků, včetně PHP. Port pro PHP je ovšem velmi komplexní a zdálo se
+mi nemožné ho upravit pro potřeby implementace jistých funkcí do prezentace.
+
+Rozhodl jsem se proto použít jazyk Texy!, který je Markdownu podobný, ovšem syntaxe se občas liší. Texy! je velmi dobře
+rozdělené na moduly a jednotlivé konverze se provádějí pomocí callbacků zaregistrovaných podle regulárních výrazů.
+
+Největší výhodou byla ovšem možnost specifikovat CSS třídy nebo určit zarovnání textu či obrázku. To je něco, co Markdown neumí. Velkou výhodou Texy! je také velmi dobrá podpora typografie. Například sekvenci znaků „\lstinline|+-|“ nahradí za jediný znak „$\pm$“, jednoduchou pomlčku nahrazuje za spojovník (pokud je to ve větě potřeba), tři tečky nahradí za jediný znak trojtečky nebo vkládá nedělitelné mezery za spojky atp. Při použití v~prezentacích jsem si to dokázal představit jako dobrý bonus.
+
+
+\section{Rozložení editoru}
+Pro rozložení editoru jsem se inspiroval u běžných nástrojů pro tvorbu prezentací (Microsoft PowerPoint, OpenOffice
+Impress) a rozdělil na obrazovku na náhled všech snímků po levé straně obrazovky a na editaci právě upravovaného snímku
+vpravo. Protože používám značkovací jazyk namísto přímé editace HTML kódu, bylo nutné dále rozdělit tuto část na
+textové pole, do kterého se bude psát text ve značkovacím jazyce, a na velký náhled snímku po konverzi do HTML kódu.
+Textové pole má navíc panel nástrojů, který dokáže vkládat značky (například nadpis, nebo kurzívu) pomocí tlačítek.
+
+Toto rozložení se ukázalo jako ne zcela dobré. Vzhled editoru je nyní postaven na velmi jednoduchém CSS a neladí se
+stylem zbytku webu, protože po přidání Bootstrap frameworku, který mimo jiné upravuje globální styly prvků, vypadají
+náhledy jinak než ve skutečnosti. Dalším problémem jsou jisté technologické nedostatky jako například zmenšování obsahu
+snímku pro přizpůsobení výšce a šířce náhledu. Proto se bude editor zjednodušovat, aby na obrazovce bylo co nejméně
+rušivých elementů a dodržoval stejný vzhled jako zbytek webu.
+
+
+\section[Chování editoru]{Chování editoru}
+Ze serveru se nejdřív získá celá prezentace jako JavaScriptový objekt. HTML kód každého snímku se pak vloží do panelu
+s~malými náhledy. Malý náhled snímku je pomocí CSS pravidla zmenšen, protože jinak by obsah byl stejně velký jako
+v~normálním zobrazení prezentace. Po kliknutí na malý náhled se objeví v~textovém poli pro úpravu snímku zdrojový text
+v jazyce~Texy! a ve velkém náhledu vpravo se objeví kompletní snímek s~inicializovanou knihovnou deck.js včetně funkční
+interakce.
+
+Změna textu snímku se automaticky posílá na server a po zkonvertování se kód HTML vrací v~odpovědi. Následně se
+aktualizují oba náhledy. Aby se na server neposílala každá úprava snímku (např. po napsání každého písmene), byla
+implementovaná čekací doba 1 sekundy. Pokud po změně snímku uplyne tato doba, během které nebyla provedena žádná další
+úprava, pošle se požadavek na server.
+
+
+\section{Úprava Texy! syntaxe}
+
+\subsection{Markdown syntaxe}
+Protože je jazyk Markdown tak rozšířený, chtěl jsem syntaxi Texy! pro psaní snímků co nejvíce přiblížit syntaxi
+Markdownu.
+
+Syntaxe Texy! je Markdownu velmi podobná. Jeden z~nejvíce patrných rozdílů byl v~syntaxi nadpisů. Proto jsem konvertor
+upravil a změny otestoval pomocí jednotkových testů.
+
+\subsection{Nová syntaxe}
+Zároveň bylo potřeba upravit konvertor a implementovat vlastní pravidla konverze textu do HTML. Tato úprava se týkala
+možnosti uživatele odpovídat na otázky během prohlížení prezentace. Jedna se pak může vyskytovat na jednom snímku.
+
+Bylo potřeba vymyslet a implementovat syntaxi na vložení zaškrtávacího pole, které by uživatel zaškrtl jako správnou
+odpověď na otázku položenou na snímku.
+
+Syntaxe byla zvolena takto:
+
+\begin{lstlisting}
+[+] pro vložení zaškrtávacího pole ke správné odpovědi
+[-] pro vložení zaškrtávacího pole ke špatné odpovědi
+\end{lstlisting}
+
+Pro vyhodnocení správnosti odpovědí se při konverzi automaticky vkládá vyhodnocovací tlačítko na konec snímku. Po jeho
+stisku uživatelem se kontroluje, že pole u správných odpovědí jsou zaškrtnutá a u špatných odpovědí nikoli. Správnost
+či nesprávnost je pak zvýrazněna CSS třídou u každého pole.
+
+U snímků s~otázkou lze také vložit i doplňkový text, který se zobrazí při správné resp. špatné odpovědi. Autor
+prezentace tak může uvést bližší informace k~odpovědi na danou otázku nebo odkázat na jiný snímek prezentace či jinou
+stránku.
+
+Pro vložení takového bloku textu byla použita podobná syntaxe jako pro ostatní účelové bloky textu v~syntaxi Texy!
+(např. blok kódu). Použití syntaxe je následující:
+
+\begin{lstlisting}
+/--correct
+Tento text se zobrazí při **správné** odpovědi
+\--
+
+/--incorrect
+Tento text se zobrazí při **špatné** odpovědi
+\--
+\end{lstlisting}
+
+
+
+\chapter{Nasazení}
+
+\section{Server}
+Pro citem aplikace je nutný běžící webový server, na kterém běží PHP a databáze. Pro vývoj používám hotové řešení WAMP (Windows, Apache, MySQL, PHP) jménem EasyPHP. Verze komponent:
+
+\begin{itemize}
+	\item Apache 2.2
+	\item PHP 5.3
+	\item MySQL 5.5
+\end{itemize}
+
+Pro nasazení na produkční prostředí jsem se rozhodl využít cloudového systému PHP Fog\footnote{\url{http://phpfog.com}}. Pro malý počet aplikací a malý rozsah poskytuje své služby zdarma. V placených řešení je pak největší výhodou možnost škálování instancí aplikace či paměti nebo velké množství rozšíření (např. analytické nástroje či optimalizační nástroje pro databázi). Server uchovává aplikaci jako git repozitář a tak pro nahrání nové verze aplikace stačí příkaz push.
+
+V listopadu 2012 bylo ovšem oznámeno ukončení provozu PHP Fogu a postupné odpojování bezplatných aplikací v průběhu prosince. Jako náhrada byla doporučena podobná služba AppFog\footnote{\url{http://www.appfog.com/}} od stejné firmy.
+
+
+
+\chapter{Shrnutí}
+Projekt byl velmi zajímavý. Vyzkoušel jsem si několik nových technologií, zejména AngularJS, který určitě budu dál sledovat a snad s~ním i někdy znovu pracovat. Opět jsem ale došel k~závěru, že zkoumání a použití nových a neznámých vlastností v~technologiích HTML(5) není jednoduché a bezproblémové.
+
+Jsem rád, že jsem použil Nette framework, který dobře znám a tak jsem neměl tolik problémů u~serverové části. Ze začátku jsem se ovšem rozhodoval, jestli si nevyzkoušet nějakou jinou technologii, například dnes moderní Ruby on Rails nebo Node.js. Mohu ale říct, že bych si nepřál znovu dělat tento projekt v~jiné technologii, neboť by mi to přineslo o to více problémů.
+
+Více práce by si rozhodně zasloužila podoba editoru a obecná uživatelská přívětivost. Jinak ale výsledek projektu hodnotím kladně.
+
+\bibliography{PRO-ref}{}
+\bibliographystyle{plain}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
