@@ -40,6 +40,7 @@ unicode=true,
 \usepackage{listings} 			%slouží pro tisk zdrojových kódů se syntax higlighting
 \usepackage{algorithmicx} 		%slouží pro zápis algoritmů
 \usepackage{algpseudocode} 		%slouží pro výpis pseudokódu
+\usepackage{enumitem}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % příkazy šablony
@@ -177,6 +178,7 @@ Tento projekt má za cíl vytvořit webový portál, který uživatelům umožn�
 
 \section{Cíle}
 Sdílení a tvorba prezentací online není originální myšlenka a v současné době existuje řada známých i méně známých portálů, které v této oblasti dosáhly dobrých výsledků. Proto jsem se rozhodl projekt zaměřit zejména na použití ve vzdělávacích institucích či školách a nebo na odborných konferencích, kde je důležité v prezentacích podat důležité informace, nejen tedy hlavní body.
+
 Stejně tak je důležité, aby tyto prezentace byly použitelné i mimo přednášku, tedy aby podaly významné informace i bez mluveného slova, například pro domácí přípravu nebo vlastní rozvoj. Pro zjednodušení tohoto cíle proto nástroj poskytuje několik prostředků jako je zvýraznění kódu programovacích jazyků či zobrazení matematických vzorců pomocí syntaxe \LaTeX.
 
 \section{Příležitosti}
@@ -193,7 +195,7 @@ V této kapitole je čtenář uveden do problematiky HTML prezentací. Dále jso
 \section{Popis problému, cíle}
 Cílem projektu je vytvořit webový nástroj pro tvorbu, úpravu a sdílení prezentací založených na technologii HTML5.
 
-V současné době se většina aplikací, nástrojů a služeb přesouvá na internet, kde se mimo jiné klade důraz na sdílení mezi uživateli. Prezentace nejsou výjimkou a na trhu lze najít již několik zavedených služeb, které se tvorbou a sdílením prezentací zabývají. S příchodem HTML5 a CSS3\footnote{V době psaní této práce bylo HTML5 ve stádiu návrhu organizací W3C. \url{http://dev.w3.org/html5/decision-policy/html5-2014-plan.html}} se objevily knihovny, které využívají těchto nových technologií pro zobrazení webových prezentací přímo v prohlížeči bez doplňků třetích stran.
+V současné době se většina aplikací, nástrojů a služeb přesouvá na internet, kde se mimo jiné klade důraz na sdílení mezi uživateli. Prezentace nejsou výjimkou a na trhu lze najít již několik zavedených služeb, které se tvorbou a sdílením prezentací zabývají (více na str. \pageref{chap:existujiciSystemy}). S příchodem HTML5 a CSS3\footnote{V době psaní této práce bylo HTML5 ve stádiu návrhu organizací W3C. \url{http://dev.w3.org/html5/decision-policy/html5-2014-plan.html}} se objevily knihovny, které využívají těchto nových technologií pro zobrazení webových prezentací přímo v prohlížeči bez doplňků třetích stran. 
 
 \section{HTML5 prezentace}
 Prezentace založené na HTML jsou z pohledu kódu běžná webová HTML stránka. K~popisu obsahu snímků se používají sémantické značky běžně používané v HTML (např. nadpisy, odstavce, obrázky). Pro úpravu grafické podoby se používá CSS. K~oživení takovéto stránky a~vytvoření dojmu prezentace a přechodů mezi snímky se používá JavaScript. Funkčnost prezentace tedy zajišťují JavaScriptové knihovny.
@@ -281,8 +283,69 @@ Zajímavou vlastností, která se liší od ostatních webových služeb pro pro
 
 Jednou z nich je možnost odpovídat na otázky a kontrolovat správné odpovědi přímo v prezentaci. Uživatelé si pak mohou vyzkoušet, co se z prezentace naučili. Navíc je možné zobrazit doplňkový text při správné či špatné odpovědi. Ten pak může obsahovat nejen vysvětlení správné odpovědi, ale třeba i odkaz na snímek týkající se dané otázky.
 
-\section{Rešerše existujících řešení}
+\section{Rešerše existujících řešení} \label{chap:existujiciSystemy}
 Během analýzy byly také vyhledány a vyzkoušeny již existující služby, jejichž funkčnost se nejvíce podobá zadání tohoto projektu. Následující odstavce popisují jejich funkci a rozdíly.
+
+
+\section{Funkční požadavky}
+Následující odstavce popisují uživatelské role, které figurují v systému, a jaké tyto role mají možnosti využití systému či práva.\\\\
+
+\noindent \textbf{Nepřihlášený uživatel} bude mít možnost:
+\begin{enumerate}
+	\item \textbf{prohlížet veřejně dostupné prezentace}, k~tomu použije 
+		\begin{enumerate}[label*=\arabic*.]
+			\item vyhledávací formulář na webu.
+			\item adresu URL na stránku s prezentací, kterou dostane jiným komunikačním kanálem.
+		\end{enumerate}
+	\item \textbf{vyhledat prezentace} vyhledávacím formulářem podle názvu nebo autora, aby mohl
+		\begin{enumerate}[label*=\arabic*.]
+			\item zhlédnout hledanou prezentaci.
+			\item číst komentáře pod prezentací.
+			\item zobrazit prezentace hledaného uživatele.
+		\end{enumerate}
+	\item \textbf{přihlásit se} do systému pomocí přihlašovacího formuláře, aby získal oprávnění přihlášeného uživatele (viz níže).
+	\item \textbf{registrovat se} do systému pomocí registračního formuláře, aby se mohl přihlásit.
+\end{enumerate}
+
+
+\noindent \textbf{Přihlášený uživatel} bude mít možnost:
+\begin{enumerate}
+	\item \textbf{vytvářet} prezentace pomocí editoru prezentací.
+	\item \textbf{posílat komentáře} k~prezentacím, ke kterým má přístup, pomocí formuláře pod prezentací.
+	\item \textbf{prohlížet veřejné a jemu sdílené} prezentace.
+	\item \textbf{vyhledat prezentace} vyhledávacím formulářem podle názvu nebo autora, aby kromě toho co může nepřihlášený uživatel:
+		\begin{enumerate}[label*=\arabic*.]
+		\item \textbf{sledovat nebo zrušit sledování} hledaného uživatele.
+		\end{enumerate}
+	\item \textbf{vidět seznam jemu sdílených prezentací}.
+	\item \textbf{vidět seznam veřejných prezentací} uživatelů, které \textbf{sleduje}.
+	\item \textbf{odhlásit se}.
+\end{enumerate}
+
+
+\noindent \textbf{Autor prezentace} bude mít možnost:
+\begin{enumerate}
+	\item \textbf{upravit prezentaci} v~editoru, aby ji o něco doplnil nebo ji opravil
+	\item \textbf{smazat prezentaci}
+	\item \textbf{smazat jakýkoliv komentář} k~vlastní prezentaci
+	\item \textbf{sdílet prezentaci} ostatním uživatelům portálu
+\end{enumerate}
+
+
+\noindent \textbf{Autor komentáře} bude mít možnost:
+\begin{enumerate}
+	\item smazat svůj komentář
+\end{enumerate}
+
+
+\section{Nefunkční požadavky}
+\begin{enumerate}
+	\item Systém bude přístupný přes webové rozhraní
+	\item Systém bude pro uživatele nezávislý na platformě
+	\item Systém bude využívat technologii HTML5
+	\item Pro prezentace bude systém využívat JavaScriptovou knihovnu
+\end{enumerate}
+
 
 \subsection{SlideShare}
 SlideShare\footnote{\url{http://www.slideshare.net}} je na internetu velmi známý webový portál pro sdílení prezentací. Obsahuje podobné mechanismy sdílení a zpětné vazby a umožňuje prezentace umisťovat na jiné stránky (tzv. embedded presentace). Prezentace jsou ovšem velmi statické – bez animací a bez větší interaktivity s~uživatelem. Některé prezentace jsou jen obrázkové, nejde tedy označit text ani následovat odkaz. Největší nevýhodou je, že prezentace nelze na portálu přímo tvořit, lze je pouze nahrávat ve formátech PDF, PPT a dalších z~lokálního úložiště. Jakákoliv změna v~prezentaci se tak musí nahrát znovu.
@@ -297,65 +360,6 @@ Rvl.io\footnote{\url{http://www.rvl.io}} je služba od autora knihovny reveal.js
 
 
 \chapter{Návrh}
-
-\section{Funkční požadavky}
-Následující odstavce popisují uživatelské role, které figurují v systému, a jaké tyto role mají možnosti využití systému či práva.\\\\
-
-\noindent \textbf{Nepřihlášený uživatel} bude mít možnost:
-\begin{itemize}
-	\item \textbf{prohlížet veřejně dostupné prezentace}, k~tomu použije 
-		\begin{itemize}
-			\item vyhledávací formulář na webu.
-			\item adresu URL na stránku s prezentací, kterou dostane jiným komunikačním kanálem.
-		\end{itemize}
-	\item \textbf{vyhledat prezentace} vyhledávacím formulářem podle názvu nebo autora, aby mohl
-		\begin{itemize}
-			\item zhlédnout hledanou prezentaci.
-			\item číst komentáře pod prezentací.
-			\item zobrazit prezentace hledaného uživatele.
-		\end{itemize}
-	\item \textbf{přihlásit se} do systému pomocí přihlašovacího formuláře, aby získal oprávnění přihlášeného uživatele (viz níže).
-	\item \textbf{registrovat se} do systému pomocí registračního formuláře, aby se mohl přihlásit.
-\end{itemize}
-
-
-\noindent \textbf{Přihlášený uživatel} bude mít možnost:
-\begin{itemize}
-	\item \textbf{vytvářet} prezentace pomocí editoru prezentací.
-	\item \textbf{posílat komentáře} k~prezentacím, ke kterým má přístup, pomocí formuláře pod prezentací.
-	\item \textbf{prohlížet veřejné a jemu sdílené} prezentace.
-	\item \textbf{vyhledat prezentace} vyhledávacím formulářem podle názvu nebo autora, aby kromě toho co může nepřihlášený uživatel:
-		\begin{itemize}
-		\item \textbf{sledovat nebo zrušit sledování} hledaného uživatele.
-		\end{itemize}
-	\item \textbf{vidět seznam jemu sdílených prezentací}.
-	\item \textbf{vidět seznam veřejných prezentací} uživatelů, které \textbf{sleduje}.
-	\item \textbf{odhlásit se}.
-\end{itemize}
-
-
-\noindent \textbf{Autor prezentace} bude mít možnost:
-\begin{itemize}
-	\item \textbf{upravit prezentaci} v~editoru, aby ji o něco doplnil nebo ji opravil
-	\item \textbf{smazat prezentaci}
-	\item \textbf{smazat jakýkoliv komentář} k~vlastní prezentaci
-	\item \textbf{sdílet prezentaci} ostatním uživatelům portálu
-\end{itemize}
-
-
-\noindent \textbf{Autor komentáře} bude mít možnost:
-\begin{itemize}
-	\item smazat svůj komentář
-\end{itemize}
-
-
-\section{Nefunkční požadavky}
-\begin{itemize}
-	\item Systém bude přístupný přes webové rozhraní
-	\item Systém bude pro uživatele nezávislý na platformě
-	\item Systém bude využívat technologii HTML5
-	\item Pro prezentace bude systém využívat JavaScriptovou knihovnu
-\end{itemize}
 
 
 
