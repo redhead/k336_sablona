@@ -1,0 +1,10 @@
+\begin{thenomenclature} 
+
+ \nomgroup{A}
+
+  \item [{HTML}]\begingroup HyperText Markup Language\nomeqref {2.0}
+		\nompageref{3}
+  \item [{MVP}]\begingroup Model-View-Presenter\nomeqref {3.0}
+		\nompageref{13}
+
+\end{thenomenclature}
