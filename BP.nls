@@ -2,9 +2,15 @@
 
  \nomgroup{A}
 
+  \item [{AJAX}]\begingroup Asynchronous JavaScript and XML\nomeqref {4.0}
+		\nompageref{17}
+  \item [{CMS}]\begingroup Content Management System\nomeqref {4.0}
+		\nompageref{17}
   \item [{HTML}]\begingroup HyperText Markup Language\nomeqref {2.0}
 		\nompageref{3}
   \item [{MVP}]\begingroup Model-View-Presenter\nomeqref {3.0}
 		\nompageref{13}
+  \item [{WYSIWYG}]\begingroup What You See Is What You Get\nomeqref {2.0}
+		\nompageref{6}
 
 \end{thenomenclature}
