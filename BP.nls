@@ -6,11 +6,18 @@
 		\nompageref{17}
   \item [{CMS}]\begingroup Content Management System\nomeqref {4.0}
 		\nompageref{17}
+  \item [{CSS}]\begingroup Cascading Style Sheets\nomeqref {2.0}
+		\nompageref{5}
   \item [{HTML}]\begingroup HyperText Markup Language\nomeqref {2.0}
 		\nompageref{3}
   \item [{MVP}]\begingroup Model-View-Presenter\nomeqref {3.0}
 		\nompageref{13}
+  \item [{PaaS}]\begingroup Platform as a Service\nomeqref {6.0}
+		\nompageref{30}
+  \item [{TDD}]\begingroup Test Driven Development\nomeqref {5.0}
+		\nompageref{25}
+  \item [{UX}]\begingroup User experience\nomeqref {7.0}\nompageref{31}
   \item [{WYSIWYG}]\begingroup What You See Is What You Get\nomeqref {2.0}
-		\nompageref{6}
+		\nompageref{7}
 
 \end{thenomenclature}

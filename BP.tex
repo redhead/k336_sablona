@@ -57,6 +57,10 @@ unicode=true,
 
 \usepackage{nameref}
 
+\usepackage{hvfloat}
+
+\usepackage{float}
+\restylefloat{table}
 
 \lstset{
 	literate=%
@@ -109,19 +113,19 @@ unicode=true,
 	% zakomentujte nebo odstrante. 
 	% Ve vysledne svazane praci bude nahrazena skutecnym 
 	% oficialnim zadanim vasi prace.
-	{
-	\pagenumbering{roman} \cleardoublepage \thispagestyle{empty}
-	\chapter*{Zadání projektu}
-	Vytvořte nástroj pro tvorbu a sdílení HTML5 prezentací na webu. Webový backend umožní  tvorbu a editaci slidů a jejich sdílení. Pro prezentaci použijte vhodnou JavaScriptovou knihovnu, kterou rozšiřte o možnost testování čtenářů prezentace. Další požadavky na software sesbírejte na základě vytvořeného prototypu.\\\\
+%	{
+%	\pagenumbering{roman} \cleardoublepage \thispagestyle{empty}
+%	\chapter*{Zadání projektu}
+%	Vytvořte nástroj pro tvorbu a sdílení HTML5 prezentací na webu. Webový backend umožní  tvorbu a editaci slidů a jejich %sdílení. Pro prezentaci použijte vhodnou JavaScriptovou knihovnu, kterou rozšiřte o možnost testování čtenářů prezentace. %Další požadavky na software sesbírejte na základě vytvořeného prototypu.\\\\
 	
-	\noindent Očekávaný výstup aplikace:
-	\begin{enumerate}
-		\item Analýza, návrh a implementace webové aplikace pro tvorbu, editaci a sdílení prezentací
-		\item Rozšíření prezentační JS knihovny
-		\item Nasazení a otestování aplikace
-	\end{enumerate}
-	\newpage
-	}
+%	\noindent Očekávaný výstup aplikace:
+%	\begin{enumerate}
+%		\item Analýza, návrh a implementace webové aplikace pro tvorbu, editaci a sdílení prezentací
+%		\item Rozšíření prezentační JS knihovny
+%		\item Nasazení a otestování aplikace
+%	\end{enumerate}
+%	\newpage
+%	}
 
 	%%%%%%%%%%%%%%%%%%%%%%%%%%    
 	% Titulni stranka / Title page 
@@ -132,14 +136,13 @@ unicode=true,
 
 	\acknowledgements
 	\noindent
-	Zde můžete napsat své poděkování, pokud chcete a máte komu děkovat.
+	Rád bych zde poděkoval své rodině, která mne po celou dobu mého studia podporovala. Dále bych chtěl poděkovat Ing. Ondřeji Mackovi, vedoucímu mé bakalářské práci, za odlehčený přístup a komunikaci v přátelském duchu.
 
 
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%   
 	% Prohlášení / Declaration 
 
-	\declaration{V~Praze dne 7.\,1.\,2013}
-	%\declaration{In Kořenovice nad Bečvárkou on May 15, 2008}
+	\declaration{V~Praze dne 24.\,5.\,2013}
 
 
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
@@ -157,7 +160,7 @@ unicode=true,
 	\vskip 2.75\baselineskip
 
 	\noindent
-	TODO Obsahem by mělo být: řeším takový a takový problém v práci se dozvíte to a to. (ne shrnutí zadání)
+	V této práci se zabývám analýzou, návrhem a vývojem webového nástroje pro tvorbu a sdílení prezentací. Dozvíte se, co bylo úkolem tohoto projektu, jak byl navržen a jaká vyvstala úskalí při jeho implementaci a realizaci. V neposlední řadě se dočtete o testování a nasazení systému do produkčního prostředí.
 
 	%%%%%%%%%%%%%%%%%%%%%%%%%%    
 	% obsahy a seznamy
@@ -190,104 +193,18 @@ Od práce na tomto projektu si slibuji větší porozumění technologiím HTML5
 
 
 \chapter{Analýza}
-V této kapitole je čtenář uveden do problematiky \nom{HTML}{HyperText Markup Language} prezentací. Dále jsou porovnávány vybrané knihovny, které zajišťují funkčnost HTML prezentací. Nakonec je představena vize vyvíjeného systému a porovnání s podobnými již existujícími systémy.
+V této kapitole je představena vize vyvíjeného systému. Dále je čtenář uveden do problematiky \nom{HTML}{HyperText Markup Language} prezentací a jsou porovnávány vybrané knihovny, které zajišťují funkčnost těchto prezentací. Nakonec jsou uvedeny podobné již existující systémy.
 
 \section{Popis problému, cíle}
 Cílem projektu je vytvořit webový nástroj pro tvorbu, úpravu a sdílení prezentací založených na technologii HTML5.
 
-V současné době se většina aplikací, nástrojů a služeb přesouvá na internet, kde se mimo jiné klade důraz na sdílení mezi uživateli. Prezentace nejsou výjimkou a na trhu lze najít již několik zavedených služeb, které se tvorbou a sdílením prezentací zabývají (více na str. \pageref{chap:existujiciSystemy}). S příchodem HTML5 a CSS3\footnote{V době psaní této práce bylo HTML5 ve stádiu návrhu organizací W3C. \cite{html5-2014}} se objevily knihovny, které využívají těchto nových technologií pro zobrazení webových prezentací přímo v prohlížeči bez doplňků třetích stran. 
+V současné době se většina aplikací, nástrojů a služeb přesouvá na internet, kde se mimo jiné klade důraz na sdílení mezi uživateli. Prezentace nejsou výjimkou a na trhu lze najít již několik zavedených služeb, které se tvorbou a sdílením prezentací zabývají (více na str. \pageref{chap:existujiciSystemy}). S příchodem HTML5 a CSS3\footnote{V době psaní této práce bylo HTML5 ve stádiu návrhu organizací W3C. \cite{html5-2014}} se objevily knihovny, které využívají těchto nových technologií pro zobrazení webových prezentací přímo v prohlížeči bez doplňků třetích stran.
 
-
-
-\section{HTML5 prezentace}
-Prezentace založené na HTML jsou z pohledu kódu běžná webová HTML stránka. K~popisu obsahu snímků se používají sémantické značky běžně používané v HTML (např. nadpisy, odstavce, obrázky). Pro úpravu grafické podoby se používá CSS. K~oživení takovéto stránky a~vytvoření dojmu prezentace a přechodů mezi snímky se používá JavaScript. Funkčnost prezentace tedy zajišťují JavaScriptové knihovny.
-
-Každá z existujících knihoven používá jiná pravidla pro konfiguraci prezentace či jednotlivých snímků. Následující výpis ukazuje zdrojový kód jednoduché HTML prezentace při použití knihovny Deck.js.
-
-\begin{lstlisting}[caption=Ukázka zdrojového kódu HTML prezentace (Deck.js)]
-<article class="deck-container">
-  <section class="slide">
-    <h1>Moje prezentace</h1>
-  </section>
-
-  <section class="slide">
-    <h2>Nadpis snímku</h2>
-    <p>Osnova:</p>
-    <ul>
-      <li>Bod 1</li>
-      <li>Bod 2</li>
-      <li>Bod 3</li>
-    </ul>
-  </section>
-</body>
-\end{lstlisting}
-
-Zobrazení právě jednoho snímku, přecházení mezi snímky a držení stavu prezentace pak obstarává knihovna samotná. Na autorovi prezentace je jen napsat obsah snímků a dodržet konvence požadované knihovnou.
-
-
-\section{Výběr JavaScriptové knihovny}
-Knihoven pro zobrazení prezentací založených na technologii (X)HTML bylo vytvořeno celá řada (viz \cite{htmlslideshowweb}). Většina z nich je ovšem už zastaralá, nefunkční nebo neodpovídající požadovaným kvalitám, například použitelnosti, uživatelské či implementační, nebo vzhledu. Následující seznam uvádí několik zdařilých knihoven, které se objevily po uvedení podpory HTML5 v~prohlížečích.
-
-\begin{itemize}
-	\item reveal.js
-	\item impress.js
-	\item Google I/O HTML5 slide template
-	\item deck.js
-\end{itemize}
-
-
-\subsection{Reveal.js} \label{chap:revealjs}
-Reveal.js\footnote{\url{https://github.com/hakimel/reveal.js/}} podporuje kromě posunu snímků horizontálně také vnořené snímky, na které se lze dostat posunem dolů. Má několik zajímavých rozšíření, např. podpora syntaxe Markdown pro psaní obsahu a barevné zvýraznění kódu programovacích jazyků pomocí knihovny highlight.js. V novém okně pak umožňuje zobrazit aktuální a následující snímek včetně poznámek přednášejícího.
-
-\subsection{Impress.js}
-Impress.js\footnote{\url{https://github.com/bartaz/impress.js/}} se více zaměřuje na vizuální jedinečnost prezentace. Dosahuje toho složitými transformacemi přechodů mezi snímky. Ty jsou rozloženy v~prostoru, a to nejen ve 2D ale i ve 3D, o různých velikostech a při přechodu mezi snímky se pohled působivě otáčí a přesouvá.
-
-Nevýhoda této knihovny je právě v tomto jednoúčelově pojatému zobrazení. Pro účely tohoto projektu je tak knihovna až moc složitá, hlavně kvůli určení pozic snímků a transformací, a pro informativní prezentace se příliš nehodí - přechody mezi snímky spíše vyrušují.
-
-\subsection{Google I/O HTML5 slide template}
-HTML5 šablonu od Googlu\footnote{\url{https://code.google.com/p/io-2012-slides/}} používají při svých prezentacích vývojáři na konferencích Google I/O. Knihovna je proto v dobré kvalitě a velmi dobře uzpůsobená pro přednášející. Obsahuje tzv. prezentační mód podobný tomu v reveal.js. Poskytuje také zvýraznění kódu programovacích jazyků a to včetně možnosti zdůraznit jen určitou část kódu, které se přednášející chce věnovat podrobněji.
-
-Knihovna ovšem nenabízí žádnou dokumentaci a tak snižuje možnost na další rozšíření. Dále má prezentace pevnou velikost a tak na menších displejích či oknech jsou snímky oříznuté. Nevýhodou je také o něco složitější konfigurace.
-
-\subsection{Deck.js}
-Knihovna deck.js\footnote{\url{https://github.com/imakewebthings/deck.js}} je v základu o něco jednodušší než ostatní knihovny výše. Je napsaná v jQuery, je velmi dobře zdokumentovaná a rozšiřitelná. Existuje pro ni řada pluginů, například již zmíněný prezentační mód či podpora Markdown syntaxe pro popis snímků.
-
-\subsection{Zhodnocení}
-Pro účely tohoto projektu byla použita knihovna deck.js, která je o něco jednodušší. Líbí se mi více celkový vzhled a jednoduchost a to, že je postavena na jQuery. Případně lze také využít existujících rozšíření nebo vytvořit vlastní. Knihovna reveal.js ovšem urazila během práce na tomto projektu velký kus cesty a v současné době je asi nejvíce rozšířenou a používanou knihovnou pro HTML prezentace. O knihovně byla také napsána výuková kniha \cite{howtobook}.
-
-
-\section{Webový portál}
-Pro uživatele má portál sloužit jako prostředník pro sdílení prezentací – ať už v~rámci portálu mezi jeho uživateli nebo
-posíláním URL odkazů na prezentace v~emailech, příspěvcích na sociálních sítích Facebook nebo Twitter a dalších. V principu se tak bude podobat portálům jako YouTube, SlideShare nebo GitHub, které se zaměřují na vystavení vlastní tvorby (videí, prezentací, kódu) a její sdílení.
-
-Sdílení prostřednictvím webového portálu je dvojího typu. Uživatelé mohou sledovat jiné uživatele a o aktivitách těchto sledovaných uživatelů, například publikace nové prezentace, bude snadněji upozorněn. Druhý typ je pak sdílení opačným směrem, od autora prezentace uživatelům portálu. Uživatele si autor vybere podle uživatelského jména či e-mailu.
-
-Důležitá je také zpětná vazba od uživatelů prohlížející si prezentace. Řešením je možnost uživatelů přidávat komentáře k jednotlivým prezentacím.
-
-\section{Editor}
-Důležitou částí tohoto projektu je editor pro úpravy prezentace. Protože obsah prezentace je tvořen pomocí HTML, nabízí se
-několik možností, jak editaci pojmout:
-
-\begin{enumerate}
-	\item psaním samotného HTML kódu.
-	\item využitím editoru typu \nom{WYSIWYG}{What You See Is What You Get}.
-	\item využitím jednoduchého textového značkovacího jazyka (lightweight markup language).
-\end{enumerate}
-
-Psaní samotného HTML kódu bylo vyloučeno bez většího váhání. HTML není nijak úsporný značkovací jazyk a pro uživatele, kteří neznají HTML, by byl překážkou. Na druhou stranu ale poskytuje největší možnou kontrolu nad podobou a funkčností prezentace. Kdyby ovšem editor měl být založen pouze na psaní HTML kódu, nebyl by vůbec potřeba - pro většinu uživatelů by pak bylo výhodnější použít nástroje, na které jsou zvyklí, a pak pouze nahrát hotovou prezentaci na web.
-
-Editor WYSIWYG je koncept dobře známý z desktopových aplikací. Jedná se o přímou úpravu obsahu a uživatel nepřichází do styku se zdrojovým kódem. Jeho největší výhodou je pak jednoduchost pro uživatele, kteří výsledek svých úprav vidí okamžitě. Ve webovém prostředí se používá pro jednoduché vytváření stránek, například v CMS systémech. Nevýhodou je, že neexistuje standard, který by dodržovaly všechny prohlížeče. Poskytuje také menší kontrolu nad výsledným kódem. 
-
-Vybrána byla nakonec poslední možnost - jednoduchý textový značkovací jazyk, jímž se bude popisovat obsah snímku. Zdrojový text se následně převádí do kódu HTML. Více je popsáno v~kapitole \ref{chap:realizace} \nameref{chap:realizace} na str. \pageref{chap:realizace}.
-
-\section{Prohlížení prezentace}
-Zajímavou vlastností, která se liší od ostatních webových služeb pro prohlížení prezentací, byla možnost poskytnout větší interaktivitu s uživatelem. Protože je prezentace běžná HTML stránka, lze využít možností webových technologií pro vytvoření nových vlastností prezentace.
-
-Jednou z nich je možnost odpovídat na otázky a kontrolovat správné odpovědi přímo v prezentaci. Uživatelé si pak mohou vyzkoušet, co se z prezentace naučili. Navíc je možné zobrazit doplňkový text při správné či špatné odpovědi. Ten pak může obsahovat nejen vysvětlení správné odpovědi, ale třeba i odkaz na snímek týkající se dané otázky.
+Tento webový portál tak bude využívat těchto nových technologií a knihoven pro poskytnutí možnosti tvorby vlastních prezentací na webu, jejich prohlížení a také sdílení dalším uživatelům.
 
 
 \section{User stories}\label{chap:userstory}
-Následující odstavce popisují uživatelské role, které se při používání systému objevují. Každá role pak má nějaké práva či možnosti využití systému. Popis je zapsán pomocí techniky zvané user story používané v agilních metodikách vývoje software. \\\\
+Následující odstavce uvádí uživatelské role, které se při používání systému objevují. Každá role pak má nějaká práva či možnosti využití systému. Popis je zapsán pomocí techniky zvané user story používané v agilních metodikách vývoje software. \\\\
 
 \noindent \textbf{Nepřihlášený uživatel} bude mít možnost:
 \begin{enumerate}
@@ -347,27 +264,115 @@ Následující odstavce popisují uživatelské role, které se při používán
 \end{enumerate}
 
 
+
+\section{HTML prezentace}
+Prezentace založené na HTML jsou z pohledu kódu běžná webová HTML stránka. K~popisu obsahu snímků se používají sémantické značky běžně používané v HTML (např. nadpisy, odstavce, obrázky). Pro úpravu grafické podoby se pak používá \nom{CSS}{Cascading Style Sheets}. S použitím technologie HTML5 lze pak využít i nových možností CSS3, například animace přechodů. K~oživení takovéto stránky a~vytvoření dojmu prezentace včetně interakce s uživatelem pro přechod mezi snímky se používá JavaScript. To vše a další vylepšující funkce jsou zajištěny mnoha existujícími JavaScriptovými knihovnami.
+
+Každá z existujících knihoven používá trochu jiná pravidla pro konfiguraci prezentace či jednotlivých snímků. Následující výpis ukazuje zdrojový kód jednoduché HTML prezentace při použití knihovny deck.js.
+
+\begin{lstlisting}[caption=Ukázka zdrojového kódu HTML prezentace (deck.js)]
+<body class="deck-container">
+  <section class="slide">
+    <h1>Moje prezentace</h1>
+  </section>
+
+  <section class="slide">
+    <h2>Nadpis snímku</h2>
+    <p>Osnova:</p>
+    <ul>
+      <li>Bod 1</li>
+      <li>Bod 2</li>
+      <li>Bod 3</li>
+    </ul>
+  </section>
+</body>
+\end{lstlisting}
+
+Zobrazení právě jednoho snímku, přecházení mezi snímky a držení stavu prezentace pak obstarává knihovna samotná. Na autorovi prezentace je jen napsat obsah snímků a dodržet konvence požadované knihovnou.
+
+
+\section{Výběr JavaScriptové knihovny}
+Knihoven pro zobrazení prezentací založených na technologii (X)HTML byla vytvořena celá řada (viz \cite{htmlslideshowweb}). Většina z nich je ovšem už zastaralá, nefunkční nebo neodpovídající požadovaným kvalitám, například použitelností, uživatelské či implementační, nebo zastaralým vzhledem. Následující seznam uvádí několik zdařilých knihoven, které se objevily po uvedení podpory HTML5 v~prohlížečích.
+
+\begin{itemize}
+	\item reveal.js
+	\item impress.js
+	\item Google I/O HTML5 slide template
+	\item deck.js
+\end{itemize}
+
+Následující odstavce stručně popisují každou z uvedených knihoven. Nakonec je uvedeno jaká knihovna byla vybrána pro tento projekt a proč.
+
+\subsection{Reveal.js} \label{chap:revealjs}
+Reveal.js\footnote{\url{https://github.com/hakimel/reveal.js/}} podporuje kromě posunu snímků horizontálně také vnořené snímky, na které se lze dostat posunem dolů. Má několik zajímavých rozšíření, např. podpora syntaxe Markdown pro psaní obsahu a barevné zvýraznění kódu programovacích jazyků pomocí knihovny highlight.js. V novém okně prohlížeče pak poskytuje zobrazení prezentace pro přednášejícího, který ukazuje aktuální a následující snímek včetně poznámek.
+
+\subsection{Impress.js}
+Impress.js\footnote{\url{https://github.com/bartaz/impress.js/}} se více zaměřuje na vizuální jedinečnost prezentace. Dosahuje toho složitými transformacemi přechodů mezi snímky. Ty jsou rozloženy v~prostoru, a to nejen ve 2D ale i ve 3D, o různých velikostech a při přechodu mezi snímky se pohled působivě otáčí a přesouvá.
+
+Nevýhoda této knihovny je právě v tomto jednoúčelově pojatému zobrazení. Pro tento projekt je tak knihovna až moc složitá, hlavně kvůli určení pozic snímků a transformací, a pro informativní prezentace se příliš nehodí - přechody mezi snímky spíše vyrušují.
+
+\subsection{Google I/O HTML5 slide template}
+HTML5 šablonu od Googlu\footnote{\url{https://code.google.com/p/io-2012-slides/}} používají při svých prezentacích vývojáři na konferencích Google I/O. Knihovna je proto v dobré kvalitě a velmi dobře uzpůsobená pro přednášející. Obsahuje tzv. prezentační mód podobný tomu v reveal.js. Poskytuje také zvýraznění kódu programovacích jazyků a to včetně možnosti zdůraznit jen určitou část kódu, které se přednášející chce věnovat podrobněji.
+
+Knihovna ovšem nenabízí žádnou dokumentaci a tak snižuje možnost na další rozšíření. Dále má prezentace pevnou velikost a tak na menších displejích či oknech jsou snímky oříznuté. Nevýhodou je také o něco složitější konfigurace.
+
+\subsection{Deck.js}
+Knihovna deck.js\footnote{\url{https://github.com/imakewebthings/deck.js}} je v základu o něco jednodušší než ostatní knihovny výše. Je napsaná s pomocí knihovny jQuery\cite{jQuery}, je velmi dobře zdokumentovaná a rozšiřitelná. Existuje pro ni řada pluginů, například již zmíněný prezentační mód či podpora Markdown syntaxe pro popis snímků. 
+
+\subsection{Zhodnocení}
+Pro účely tohoto projektu byla vybrána knihovna deck.js, která je sice o něco jednodušší, ale líbí se mi více celkový vzhled a jednoduchost a to, že je postavena na jQuery. Případně lze také využít existujících rozšíření nebo vytvořit vlastní. Knihovna reveal.js ovšem urazila během práce na tomto projektu velký kus cesty a v současné době je asi nejvíce rozšířenou a používanou knihovnou pro HTML prezentace. O knihovně již byla také napsána výuková kniha \cite{howtobook}.
+
+
+\section{Webový portál}
+Pro uživatele má portál sloužit jako prostředník pro sdílení prezentací – ať už v~rámci portálu mezi jeho uživateli nebo
+posíláním URL odkazů na prezentace v~emailech, příspěvcích na sociálních sítích jako Facebook nebo Twitter a podobných. V principu se tak bude podobat portálům jako YouTube, SlideShare nebo GitHub, které se zaměřují na vystavení vlastní tvorby (videí, prezentací, kódu) a její sdílení.
+
+Sdílení prostřednictvím webového portálu je dvojího typu. Uživatelé mohou sledovat jiné uživatele a o aktivitách těchto sledovaných uživatelů, například publikace nové prezentace, bude snadněji upozorněn. Druhý typ je pak sdílení opačným směrem, od autora prezentace uživatelům portálu. Uživatele si autor vybere podle uživatelského jména či e-mailu.
+
+Důležitá je také zpětná vazba od uživatelů prohlížející si prezentace. Řešením je možnost uživatelů přidávat komentáře k jednotlivým prezentacím.
+
+\section{Editor}
+Důležitou částí tohoto projektu je editor pro úpravy prezentace. Protože obsah prezentace je tvořen pomocí HTML, nabízí se
+několik možností, jak editaci pojmout:
+
+\begin{enumerate}
+	\item psaním samotného HTML kódu.
+	\item využitím editoru typu \nom{WYSIWYG}{What You See Is What You Get}.
+	\item využitím jednoduchého textového značkovacího jazyka (lightweight markup language).
+\end{enumerate}
+
+Psaní samotného HTML kódu bylo vyloučeno bez většího váhání. HTML není nijak úsporný značkovací jazyk a pro uživatele, kteří neznají HTML, by byl překážkou. Na druhou stranu ale poskytuje největší možnou kontrolu nad podobou a funkčností prezentace. Kdyby ovšem editor měl být založen pouze na psaní HTML kódu, nebyl by vůbec potřeba - pro většinu uživatelů by pak bylo výhodnější použít nástroje, na které jsou zvyklí, a pak pouze nahrát hotovou prezentaci na web.
+
+Editor WYSIWYG je koncept dobře známý z desktopových aplikací. Jedná se o přímou úpravu obsahu a uživatel nepřichází do styku se zdrojovým kódem. Jeho největší výhodou je pak jednoduchost pro uživatele, kteří výsledek svých úprav vidí okamžitě. Ve webovém prostředí se používá pro jednoduché vytváření stránek, například v CMS systémech. Nevýhodou je, že neexistuje standard, který by dodržovaly všechny prohlížeče. Poskytuje také menší kontrolu nad výsledným kódem. 
+
+Vybrána byla nakonec poslední možnost - jednoduchý textový značkovací jazyk, jímž se bude popisovat obsah snímku. Zdrojový text se následně převádí do kódu HTML. Více je popsáno v~kapitole \ref{chap:realizace} \nameref{chap:realizace} na str. \pageref{chap:realizace}.
+
+\section{Prohlížení prezentace}
+Zajímavou vlastností, která se liší od ostatních webových služeb pro prohlížení prezentací, byla možnost poskytnout větší interaktivitu s uživatelem. Protože je prezentace běžná HTML stránka, lze využít možností webových technologií pro vytvoření nových vlastností prezentace.
+
+Jednou z nich je možnost odpovídat na otázky a kontrolovat správné odpovědi přímo v prezentaci. Uživatelé si pak mohou vyzkoušet, co se z prezentace naučili. Navíc je možné zobrazit doplňkový text při správné či špatné odpovědi. Ten pak může obsahovat nejen vysvětlení správné odpovědi, ale třeba i odkaz na snímek týkající se dané otázky.
+
+
 \section{Rešerše existujících řešení} \label{chap:existujiciSystemy}
 Během analýzy byly také vyhledány a vyzkoušeny již existující služby, jejichž funkčnost se nejvíce podobá zadání tohoto projektu. Následující odstavce popisují jejich funkci a rozdíly.
 
 
 \subsection{SlideShare}
-SlideShare\footnote{\url{http://www.slideshare.net}} je na internetu velmi známý webový portál pro sdílení prezentací. Obsahuje podobné mechanismy sdílení a zpětné vazby a umožňuje prezentace umisťovat na jiné stránky (tzv. embedded presentace). Prezentace jsou ovšem velmi statické – bez animací a bez větší interaktivity s~uživatelem. Některé prezentace jsou jen obrázkové, nejde tedy označit text ani následovat odkaz. Největší nevýhodou je, že prezentace nelze na portálu přímo tvořit, lze je pouze nahrávat ve formátech PDF, PPT a dalších z~lokálního úložiště. Jakákoliv změna v~prezentaci se tak musí nahrát znovu.
+SlideShare\footnote{\url{http://www.slideshare.net}} je na internetu velmi známý webový portál pro sdílení prezentací. Obsahuje podobné mechanismy sdílení a zpětné vazby a umožňuje prezentace umisťovat na jiné stránky (tzv. embedded prezentace). Prezentace jsou ovšem velmi statické – bez animací a bez větší interaktivity s~uživatelem. Některé prezentace jsou jen obrázkové, nejde tedy označit text ani následovat odkaz. Největší nevýhodou je, že prezentace nelze na portálu přímo tvořit, lze je pouze nahrávat ve formátech PDF, PPT a dalších z~lokálního úložiště. Jakákoliv změna v~prezentaci se tak musí nahrát znovu.
 
 \subsection{Prezi}
-Prezi\footnote{\url{http://www.prezi.com}} funguje na podobném principu jako SlideShare, ale zaměřuje se daleko více na grafickou stránku a zakládá si na kreativitě uživatelů a vyjádření jejich idejí pomocí celkového vzhledu prezentace. Prezentace se značně liší od běžných prezentací, které známe například z~Microsoft PowerPoint. Jejich použití se hodí hlavně pro vyjádření nějaké myšlenky či vize, méně se hodí pro podání důležitých informací. Pro zobrazení prezentace používá technologii Flash.
+Prezi\footnote{\url{http://www.prezi.com}} funguje na podobném principu jako SlideShare, ale zaměřuje se daleko více na grafickou stránku a zakládá si na kreativitě uživatelů a vyjádření jejich idejí pomocí celkového vzhledu prezentace. Prezentace se značně liší od běžných prezentací, které známe například z~Microsoft PowerPoint. Jejich použití se hodí hlavně pro vyjádření nějaké myšlenky či vize, méně se hodí pro podání důležitých informací. Velmi dobrou vlastností je živé sdílení, tj. procházení prezentace se synchronizuje mezi uživateli. Pro zobrazení prezentace používá technologii Flash.
 
 \subsection{Rvl.io}
 Rvl.io\footnote{\url{http://www.rvl.io}} je služba od autora knihovny reveal.js popsané na str. \pageref{chap:revealjs}, kterou také používá pro zobrazení prezentací. Služba umožňuje sdílení i tvorbu prezentací přímo na webu. Sdílení je založeno na předávání adresy URL, poskytuje ale také vkládání prezentace do jiných stránek, podobně jako SlideShare. Pro úpravu prezentací využívá WYSIWYG editor, který ale poskytuje jen nezbytné minimum funkcí. Tento portál je velmi mladý a uveden byl po měsíci od započetí práce na tomto projektu. Služba byla v~době psaní této práce stále ve fázi beta testování.
 
+\subsection{Shrnutí}
+Rvl.io jako jediný z vybraných systémů používá pro zobrazení prezentací HTML. Také poskytuje možnost tvorby prezentace a její sdílení, nejvíce se tak podobá zadání tohoto projektu. Neposkytuje ovšem žádnou přidanou hodnotu, která by se dala ve webovém prostředí využít. SlideShare staví do popředí hlavně sdílení prezentací a má proto bohaté mechanismy. Do projektu se budu snažit převzít to dobré z obou dvou, např. sledování uživatelů. Prezi naopak, i když je to velmi vydařená a propracovaná služba, míří zcela na jinou cílovou skupinu. 
 
-
-
-\chapter{Návrh}
-
-V následujícím textu bude čtenář seznámen s detailním návrhem systému. Kromě doménového modelu a popisu jednotlivých entit budou popsány použité technologie a knihovny.
 
 \section{Doménový model}
+Z user stories vychází doménový model, který ukazuje celý systém jako provázané entity vyskytující se v systému. Celý model je přehledně zobrazen na obrázku \ref{fig:domainModel} v jazyce UML. Popis jednotlivých entit a jejich vlastností následuje v odstavcích níže.
+
 \begin{figure}[ht]
 	\begin{center}
 		\includegraphics[width=14cm]{PRO-img/domain.png}
@@ -395,7 +400,7 @@ vlastnosti:
 
 \begin{itemize}
 	\item \textbf{název}, pod kterým se daná prezentace bude zobrazovat ve výpisech.
-	\item \textbf{slug} - zjednodušený název (malá písmena anglické abecedy, čísla a pomlčky), pod kterým bude prezentace dostupná přes adresu URL.
+	\item \textbf{slug} - zjednodušený název (malá písmena anglické abecedy, čísla a pomlčky), pod kterým bude prezentace dostupná přes adresu URL. Pro daného autora je jedinečný, tj. kombinace uživatelského jména a slugu je unikátní.
 	\item \textbf{obsah}, jenž představuje složitější objekt textů jednotlivých snímků a různých nastavení prezentace.
 \end{itemize}
 
@@ -405,7 +410,7 @@ Prezentace může být sdílena konkrétním uživatelům portálu.
 
 
 \subsection{Koncept}
-Koncept je obsah prezentace (popis snímků, nastavení), který nebyl zatím publikován. Je viditelný pouze v editoru pro autora prezentace. Při publikaci změn prezentace se obsah konceptu překopíruje do obsahu vlastní entity prezentace.
+Koncept je obsah prezentace (popis snímků, nastavení), který nebyl zatím publikován. Je viditelný pouze v editoru pro autora prezentace. Při publikaci změn prezentace se obsah konceptu překopíruje do obsahu vlastní entity prezentace, změny jsou pak viditelné i dalšími uživateli.
 
 
 \subsection{Komentář}
@@ -419,6 +424,10 @@ vlastnostmi jsou:
 
 Komentář se váže k~jedné prezentaci a jednomu uživateli (autorovi komentáře).
 
+
+
+\chapter{Návrh}
+V následujícím textu bude čtenář seznámen s detailním návrhem systému, použitými technologiemi a knihovnami.
 
 \section{Serverová část}
 Webový back-end jsem se rozhodl napsat v~programovacím jazyce PHP s~použitím českého webového aplikačního frameworku Nette\cite{nette}. Pro uchování dat byla použita databáze MySQL\cite{mysql}.
@@ -471,9 +480,7 @@ Pro vzhled a grafické uživatelské rozhraní byl použit framework Bootstrap\c
 \section{Editor}
 Editoru prezentací byl přikládán větší význam, neboť bez této komponenty by systém nemohl realizovat myšlenku tohoto projektu. Značně se také liší od ostatních obyčejných webových stránek, jelikož se jedná z větší části o ryze klientskou jednostránkovou miniaplikaci.
 
-Právě proto používá editor pár technologií navíc. Jako nejdůležitější se ukázalo použití JavaScriptového MVC frameworku AngularJS\cite{angular}. Jeho hlavní předností je dvoucestné provázání dat mezi pohledem (view) a modelem na straně klienta. Každá změna v~modelu se pak automaticky propaguje do pohledu a naopak. Snižuje se tak množství kódu, který otrocky nastavuje nebo zobrazuje data při jednotlivé změně. 
-
-TODO wireframe editoru
+Právě proto používá editor pár technologií navíc. Jako nejdůležitější se ukázalo použití JavaScriptového \nom{MVC}{Model-View-Controller} frameworku AngularJS\cite{angular}. Jeho hlavní předností je dvoucestné provázání dat mezi pohledem (view) a modelem na straně klienta. Každá změna v~modelu se pak automaticky propaguje do pohledu a naopak. Snižuje se tak množství kódu, který otrocky nastavuje nebo zobrazuje data při jednotlivé změně. 
 
 Pro popis obsahu snímku, jak bylo zmíněno v analýze, byl se používá jednoduchý textový značkovací jazyk, který převádí text do HTML. Pro převod tohoto textu je použita PHP knihovna Texy!\cite{texy}, která implementuje vlastní stejnojmenný značkovací jazyk. Výhodou této knihovny je snadná rozšiřitelnost a také typografické úpravy výsledného textu. Více o výběru knihovny se dozvíte v~následující kapitole.
 
@@ -484,13 +491,13 @@ Součástí editoru je také panel nástrojů, který doplňuje textový vstup p
 \chapter{Realizace klientské části} \label{chap:realizace}
 V této kapitole se dozvíte o průběhu realizace klientské části aplikace, tj. editoru prezentací a zobrazení prezentací, co vedlo k rozhodnutím o podobě projektu a jaké problémy vyvstaly a jak byly řešeny.
 
-\subsection{Prototyp editoru prezentací}
+\section{Prototyp editoru prezentací}
 V~první fázi vývoje jsem se zabýval myšlenkou editoru prezentace jako hlavní komponenty, bez které by projekt neplnil požadovanou funkci. Následující text popisuje průběh práce na prototypu editoru prezentace.
 
-\subsubsection{WYSIWYG editor}
+\subsection{WYSIWYG editor}
 Při prvním prototypování editoru snímků prezentace se počítalo s~použitím WYSIWYG editoru, tedy editoru, kde jsou změny vidět v reálném čase a uživatel při samotné úpravě snímků okamžitě vidí, jak bude vypadat konečný výsledek. Výhodou je, že uživatel nepotřebuje znát ani jazyk HTML (i když knihovny často poskytují i možnost kód HTML upravovat). Existuje mnoho knihoven, které WYSIWYG editor různě implementují. Protože ale neexistuje žádný standard, každý prohlížeč se chová trochu jinak a zároveň každá knihovna si různé věci implementuje po svém.
 
-Nejdříve byla otestována WYSIWYG knihovna Aloha Editor\cite{aloha}, která se nejčastěji používá v \nom{CMS}{Content Management System} systémech. Nabízí několik zajímavých vlastností jako je např. repositář - prohlížeč obrázků, souborů či vlastních uživatelských objektů. Potíže ovšem nastaly se zobrazením panelu nástrojů a špatnou podporou CSS3 transformací, které jsou použity ve vzhledu deck.js prezentací. Největším problémem byla ovšem licence\footnote{pozn.: nedávno byla licence změněna na GPLv2, projekt byl ale už v tu dobu v pokročilé fázi vývoje}.
+Nejdříve byla otestována WYSIWYG knihovna Aloha Editor\cite{aloha}, která se nejčastěji používá v \nom{CMS}{Content Management System} systémech. Nabízí několik zajímavých vlastností jako je např. repositář - prohlížeč obrázků, souborů či vlastních uživatelských objektů. Potíže ovšem nastaly se zobrazením panelu nástrojů a špatnou podporou CSS3 transformací, které jsou použity ve vzhledu deck.js prezentací.
 
 Jako další editor byl vyzkoušen Mercury Editor\cite{mercury}, který se zdál být vhodnější a komplexnější. I když se jedná o JavaScriptovou knihovnu, je vyvíjena v~Ruby pro použití v~Ruby On Rails aplikacích a tak bylo hodně věcí přizpůsobeno těmto technologiím (například počítala s~partial pohledy, které se posílají pomocí technologie \nom{AJAX}{Asynchronous JavaScript and XML} ze serveru). Nicméně knihovna není na jazyce Ruby závislá a lze ji použít bez něj.
 
@@ -498,7 +505,7 @@ Zde se ale po chvíli objevily problémy technického rázu – prohlížeče se
 
 Objevily se i další chyby v~použitelnosti či bugy, na které jsem se pak snažil upozornit\footnote{viz \url{https://github.com/jejacks0n/mercury/issues/253}} autora knihovny. Chyba ale dosud nebyla opravena.
 
-\subsubsection{Editor založený na jednoduchém značkovacím jazyce}
+\subsection{Editor založený na jednoduchém značkovacím jazyce}
 Všechny tyto problémy nakonec vyústily k rozhodnutí použít značkovací jazyk, tzv. Lightweight markup language, který
 převádí text do HTML. V~poslední době získávají tyto jazyky velkou popularitu kvůli jednoduchosti a velmi dobré podobě
 výsledného HTML kódu.
@@ -518,7 +525,7 @@ Protože se ale pro popis obsahu snímku používá značkovací jazyk namísto 
 \begin{figure}[ht]
 	\begin{center}
 		\includegraphics[width=14cm]{PRO-img/editor2.png}
-		\caption{Ukázka editoru}
+		\caption[Ukázka editoru]{Ukázka editoru (vlevo náhledy všech snímků, uprostřed pole zdrojového textu, vpravo velký náhled upravovaného snímku)}
 		\label{fig:editorLayout}
 	\end{center}
 \end{figure}
@@ -598,7 +605,7 @@ Co je cílem scopingu?
 \begin{figure}[ht]
 	\begin{center}
 		\includegraphics[width=14cm]{PRO-img/odpovedi.png}
-		\caption{Ukázka snímku z otázkou a odpovědmi}
+		\caption{Ukázka snímku s otázkou a odpovědmi}
 		\label{fig:odpovedi}
 	\end{center}
 \end{figure}
@@ -669,10 +676,64 @@ $$
 
 
 
-\chapter{Nasazení}
+\chapter{Testování}
+Testování je důležitou součástí vývoje každého softwarového systému. Jedná se o takové zkoušení systému, které nalezne nejen chyby (tzv. bugy) v softwaru, ale ověřuje také, zda-li vyhovuje zadaným požadavkům. Před několika lety, často se s tím ale můžeme setkat i dnes, se testování provádělo ručně. Zvláště v jazyku PHP se často při každé změně ručně obnovuje stránka v prohlížeči a následně se kontrolují výstupy.
 
-\section{Server}
-Pro chod systému je nutný spuštěný webový server, na kterém běží PHP a databáze MySQL. Pro vývoj používám hotové řešení WAMP (Windows, Apache, MySQL, PHP) jménem EasyPHP. Verze komponent:
+V současné době se ale software nejčastěji testuje s pomocí automatických nástrojů. To znamená, že testy definované nějakým scénářem jsou spouštěny všechny najednou a výsledkem jsou zprávy, zda všechny testy úspěšně prošly. Pokud některé testy neprošly, snadno zjistíme příčinu. Při každé změně software tak můžeme rychle zjistit, zda-li systém vyhovuje požadavkům a zda neobsahuje chyby. Protože máme možnost spouštět všechny testy, můžeme mít (větší) jistotu, že změna nerozbila jiné části systému, které na první pohled se změnou nesouvisí.
+
+
+\section{Test Driven Development}
+\nomExpl{TDD}{Test Driven Development} neboli vývoj řízený testy je metodika vývoje software, kdy se test píše dříve než kód, který má daný test ověřit. Použití této metodiky má několik výhod - test je psán bez znalosti vnitřní implementace ověřovaného kódu a je tak pro programátora těžší být ovlivněn vlastní implementací. Vedlejším efektem je pak i lepší návrh aplikace. Protože v testech se snažíme psát co nejméně kódu, programátor se pak snaží testovaný kód mít co nejjednodušší pro nastavení a inicializaci, což prospívá i jednoduchosti samotné implementace.
+
+Tento projekt je prvním, kdy jsem se snažil používat metodiku TDD. Ne vždy se to však povedlo, neboť jsem byl zvyklý na opačný postup. Nejvíce jsem jej využil při úpravě a implementaci nových syntaxí v knihovně Texy!, kdy jsem si pro požadované výstupy knihovny napsal test předem a poté dané změny syntaxe implementoval. Dále pak bylo TDD použito při refaktorování backendu aplikace.
+
+Metodika TDD se velmi dobře aplikuje a při vývoji mi pomáhala, avšak zvyklost byla často silnější. V dalších projektech se budu snažit používat ji ještě více.
+
+
+\section{Jednotkové testy}
+Jednotkové nebo také unit testy jsou testy, které ověřují správnost jedné malé části software, tzv. jednotky. Typicky jsou to metody nebo třídy. Jejich úkolem je zjistit správnost funkčnosti této jednotky nehledě na vlivy ostatních jednotek, např. ostatních tříd či metod nebo úplně jiných systémů.
+
+V tomto projektu byly unit testy psány hlavně při úpravě syntaxe knihovny Texy!. Bylo nutné, aby nové prvky syntaxe nebyly v konfliktu s již existujícími, což však bylo znemožněno neexistujícími testy v samotné knihovně Texy!. Testy tak sloužili jen na ověření výstupu nové či upravené syntaxe.
+
+Protože jsou výstupy testů syntaxe často dlouhé a ve zdrojovém souboru by byly nepřehledné, byly jak vstupy tak očekávané výstupy jednotlivých testů přesunuty do textových souborů. Vstupní soubory se pak dávkově nahrávaly do testu a výstup se kontroloval oproti souborům s očekávanými výstupy.
+
+Unit testy byly napsány s pomocí PHP frameworku pro jednotkové testování PHPUnit\cite{phpunit}.
+
+
+\section{Integrační testy}
+Integrační testy ověřují komunikaci mezi více jednotkami, testovaný kód je oproti jednotkovým testům již závislý i na ostatních třídách, komponentách, systémech nebo dokonce platformě či hardwaru.
+
+Tímto způsobem byla v projektu testovaná modelová vrstva aplikace, tedy entity, repositáře a fasády. Testované třídy používají funkční MySQL databázi, která obsahuje testovací data. Při každém jednotlivém testu se databáze smaže a vytvoří znovu podle SQL souboru obsahující definice tabulek a data ve výchozím stavu. Je tak vyřešena jakákoliv nekonzistence mezi jednotlivými testy a není potřeba po každém testu ručně navracet databázi do výchozího stavu. Stejně jako u jednotkových testů byl použit framework PHPUnit. Ukázky integračních testů naleznete ve výpisu \ref{lst:integrationtest} v příloze \ref{chap:ukazkykodu}.
+
+\begin{table}[H]
+    \center \begin{tabular}{ll}
+    Počet testů           & 57  \\
+    Počet úspěšných testů & 56  \\
+    Pokrytí kódu          & 52 \%  \\
+    \end{tabular}
+\end{table}
+
+Neprocházející test ověřuje, že nelze nasdílet prezentaci neexistujícímu uživateli (s neznámým ID uživatele). Tuto chybu ovšem není možné udělat přes webové rozhraní, a proto jsem chybu neopravil. Test jsem ponechal pro případný další vývoj.
+
+\section{Selenium testy}
+Pro testování uživatelského rozhraní byl použit systém Selenium\citep{selenium}. Jeho hlavním úkolem je automatizace webových prohlížečů, nejčastěji se ale používá právě jako testovací nástroj. 
+
+Selenium poskytuje rozhraní pro komunikaci s různými prohlížeči různých verzí. Testy se skládají ze scénářů, tedy předem definovaných kroků prohlížeče (např. kliknutí na odkaz nebo vyplnění formulářového pole) a díky komunikačnímu rozhraní lze také z prohlížeče získávat informace (např. zda-li se na stránce objevuje nějaké slovní spojení). Tyto scénáře můžou být interaktivně vytvořeny pomocí Selenium IDE (pouze pro prohlížeč Firefox) a pak je lze opakovaně spouštět. Další možností je použít Selenium Remote Control (RC), který dokáže prohlížeč spustit a vykonat scénáře definované v nějakém z podporovaných programovacích jazyků.
+
+Ovladač pro Remote Control jazyk PHP podporuje a zmíněný testovací framework PHPUnit poskytuje rozšíření implementující klient-server protokol pro komunikaci s RC. Navíc také nabízí specializované metody pro testování. Ve výpisu \ref{lst:seleniumtest} v příloze \ref{chap:ukazkykodu} se můžete podívat, jak takový test vypadá.
+
+\section{Zátěžové testy}
+Zátěžové testy prověřují chování aplikace pod narůstajícím počtem požadavků. Je tak snadné zjistit, zda-li je aplikace dostatečně rychlá a zda-li ustojí větší počet aktivních uživatelů. Pro otestování tohoto projektu nasazeném na AppFog jsem se rozhodl využít webový nástroj Load Impact\cite{loadimpact}, jenž zdarma poskytuje zátěžové testy s maximálně 50 souběžnými virtuálními uživateli. 
+
+Zdarma ale služba nenabízí výběr místa odkud požadavky přicházejí. To se pak podepsalo na delší odezvě serveru, neboť požadavky většinou nepřicházely z Evropy, kde se aplikační server nachází. Zvyšující se zátěž ale nepředstavovala pro aplikaci větší problém a i při plném vytížení, jenž LoadImpact poskytuje, byla doba načtení konstantní.
+
+Pro testování byly vybrány dvě stránky, které představují pro aplikaci velkou režii a to jak na straně PHP tak i na straně databáze. Občas se vyskytly mírné fluktuace, které jsou nejspíš vinou bezplatné aplikace AppFogu\footnote{Je obecně známo, že služba AppFog neposkytuje dostatek zdrojů ani kvality pro bezplatné účty.}, neboť u následujícího vyššího zatížení se tyto výkyvy neprojevily. Grafy výsledků obou testů najdete v příloze \ref{chap:loadtest}.
+
+\chapter{Nasazení}
+V této kapitole jsou shrnuty požadavky na nasazení aplikace a dále je vylíčen průběh nasazení projektu na produkční server.
+
+\section{Požadavky}
+Pro chod systému je nutný spuštěný webový server, na kterém běží PHP. Dále je pak potřeba MySQL databáze. Komponenty a jejich verze, na kterých byl projekt vyvíjen, jsou uvedeny níže.
 
 \begin{itemize}
 	\item Apache 2.2
@@ -680,18 +741,59 @@ Pro chod systému je nutný spuštěný webový server, na kterém běží PHP a
 	\item MySQL 5.5
 \end{itemize}
 
-Pro nasazení na produkční prostředí jsem se rozhodl využít cloudového systému PHP Fog\footnote{\url{http://phpfog.com}}. Pro malý počet aplikací a malý rozsah poskytuje své služby zdarma. V placených řešení je pak největší výhodou možnost škálování instancí aplikace či paměti nebo velké množství rozšíření (např. analytické nástroje či optimalizační nástroje pro databázi). Server uchovává aplikaci jako git repozitář a tak pro nahrání nové verze aplikace stačí příkaz push.
+Pro zaručení správného chodu aplikace je také dobré ověřit, zda-li server splňuje požadavky samotného Nette Frameworku. K tomu lze využít PHP skript jménem Requirements Checker, jenž je frameworkem poskytován. Více o skriptu, jeho instalaci a spuštění naleznete v dokumentaci Nette Frameworku \cite{checker}.
 
-V listopadu 2012 bylo ovšem oznámeno ukončení provozu PHP Fogu a postupné odpojování bezplatných aplikací v průběhu prosince. Jako náhrada byla doporučena podobná služba AppFog\footnote{\url{http://www.appfog.com/}} od stejné firmy.
+\section{Realizace nasazení}
+Pro nasazení na produkční prostředí jsem se nejdříve rozhodl využít cloudového systému PHP Fog. Pro malý počet aplikací a malý rozsah poskytoval své služby zdarma. V placených řešení bylo pak největší výhodou možnost škálování instancí aplikace či operační paměti nebo velké množství rozšíření, např. analytické nástroje či optimalizační nástroje pro databázi. Server uchovával aplikaci jako Git repositář a tak pro nahrání nové verze aplikace stačil příkaz \verb|push|.
+
+V listopadu 2012 bylo ovšem oznámeno ukončení služby PHP Fog a postupné odpojování bezplatných aplikací v průběhu prosince 2012. Jako náhrada byla doporučena podobná služba AppFog\cite{appfog} od stejné firmy \citep{phpfogdiscont}.
+
+AppFog je cloudová služba poskytující \nomExpl{PaaS}{Platform as a Service}, tedy platformu pro ně. Na rozdíl od PHP Fogu podporuje kromě PHP i další jazyky, např. Node, Ruby či Javu. Změněn byl i způsob nahrávání aplikace, z Git repositáře přešel na vlastní konzolový nástroj, který dále nabízí i komplexní správu aplikací.
+
+Nevýhodou tohoto systému je v současné době neexistující persistentní úložiště souborů, to znamená, že každá změna provedená na souborech na serveru (např. uložení obrázků nahraných uživateli aplikace), bude při nahrání nové verze aplikace nenávratně ztracena (databází se to ovšem netýkalo). Tento problém měl být vyřešen ve stejné době jako ukončení provozu PHP Fogu, avšak ani v době dokončování psaní této práce nebyla situace vyřešena.
+
+\section{Deployment}
+Projekt byl průběžně vyvíjen na lokálním serveru a při větším počtu změn byl aktualizován produkční server. Pro řešení závislostí použitých PHP knihoven jsem přidal balíčkovací systém Composer, který kromě závislostí obstará i stažení a aktualizaci těchto knihoven. Knihovny tak nejsou součástí projektu a při nasazení je potřeba je příkazem \verb|install| do aplikace stáhnout a nainstalovat. Více se dočtete v dokumentaci Composeru \cite{composer}.
+
+Další významnou součástí aktualizace systému byla migrace databáze při její změně. K tomu byla použita knihovna Phinx, kterou jsem upravil, aby používala konfigurační soubor Nette Frameworku. Při změně schématu databáze je pak nutné příkazem vytvořit PHP soubor ve složce \verb|migrate|, který obsahuje metodu pro provedení změny v databázi a také metodu pro navrácení do původního stavu. Při aktualizaci projektu je pak nutné provést příkaz \verb|migrate|, který dosud neprovedené změny databáze provede. Více informací získáte z dokumentace knihovny Phinx \cite{phinx}.
 
 
+\chapter{Zhodnocení a budoucí vývoj}
+Práce na tomto projektu byla velmi zajímavá. Vyzkoušel jsem si řadu nových technologií, zejména AngularJS, který určitě budu dál sledovat a snad i s~ním znovu někdy pracovat. Kromě AngularJS jsem si poprvé vyzkoušel i migrace databází v PHP a i když to není tak automatické jako třeba v Ruby on Rails, pracuje se s knihovnou velmi dobře.
 
-\chapter{Shrnutí}
-Projekt byl velmi zajímavý. Vyzkoušel jsem si několik nových technologií, zejména AngularJS, který určitě budu dál sledovat a snad s~ním i někdy znovu pracovat. Opět jsem ale došel k~závěru, že zkoumání a použití nových a neznámých vlastností v~technologiích HTML(5) není jednoduché a bezproblémové.
+Výbornou zkušeností bylo také nasazení projektu na cloudové PaaS systémy. Tyto služby jsou nejen jednoduché na použití, ale poskytují široké možnosti správy a škálování aplikací. Platforma PHP ovšem trochu kulhá při větším počtu instancí a je proto nutné s řešením počítat již při vývoji aplikace. Placená řešení cloudových systémů ovšem mnohanásobně převyšují výhody vlastního serveru nebo běžných webhostingových služeb.
 
-Jsem rád, že jsem použil Nette framework, který dobře znám a tak jsem neměl tolik problémů u~serverové části. Ze začátku jsem se ovšem rozhodoval, jestli si nevyzkoušet nějakou jinou technologii, například dnes moderní Ruby on Rails nebo Node.js. Mohu ale říct, že bych si nepřál znovu dělat tento projekt v~jiné technologii, neboť by mi to přineslo o to více problémů.
+S projektem jsem celkově spokojený, i když jsem zprvu čekal mnohem rychlejší vývoj, některé funkce tak kvůli nedostatku času či kvůli řešení jiných problémů nebyly implementovány. Problémy nastaly u prezentační knihovny a vzhledu prezentace, které zpomalovaly vývoj. Dále by bylo dobré zapracovat na zlepšení uživatelské přívětivosti a mobilní verzi.
 
-Více práce by si rozhodně zasloužila podoba editoru a obecná uživatelská přívětivost. Jinak ale výsledek projektu hodnotím kladně.
+Z práce na projektu jsem ale zjistil, že se v době responzivních designů a dalších novinek v CSS3 začínám ztrácet a řešení vzhledu webů a \nomExpl{UX}{User experience} nestíhám sledovat. Proto bych se v dalších projektech více zaměřil na vývoji back-endu aplikací a přenechal tyto problémy zkušenějším designerům.
+
+Jsem rád, že jsem použil Nette Framework, který dobře znám a tak jsem neměl tolik problémů při vývoji serverové části. Ze začátku jsem se ovšem rozhodoval, jestli si nevyzkoušet nějakou jinou technologii, například dnes populární Ruby on Rails nebo Node.js. Při výběru jsem bral v úvahu hlavně malé zkušenosti s těmito technologiemi a bál jsem se možných problémů a mnohem pomalejšího vývoje při jejich řešení. Na druhou stranu jsem se ochudil o možnost si technologie vyzkoušet a zjistit pro a proti. Při práci na tomto projektu jsem ale zjistil, že PHP má jednu nevýhodu a to v nedokonalém ekosystému, naproti tomu Ruby on Rails dokáže pár příkazy stáhnout, nainstalovat a nakonfigurovat potřebné knihovny.
+
+\section{Budoucí vývoj}
+Projekt je sice v použitelném stavu, ale rozhodně není dokonalý a chybí jisté funkce či vylepšení, které by uživatelé ocenili. Následující odstavce popisují nejdůležitější body mojí vize dalšího vývoje projektu. Nejedná se pouze o zlepšení UX při prohlížení prezentací, ale také nové funkce, které zlepší organizaci, přehlednost a zpětnou vazbu uživateli.
+
+\subsection{Náhledy prezentací}
+V současné chvíli jsou prezentace ve výpisech na webu reprezentovány pouze názvem prezentace. Chybí tak jakákoliv grafická vazba na prezentaci. Uživatelé se ale mnohem rychleji orientují podle obrázků než podle textů. Proto by bylo dobré ve výpisech zobrazovat i náhled prvního snímku prezentace.
+
+\subsection{Notifikace}
+Jako další vylepšení by mohly sloužit notifikace (upozornění) uživatelům, ať už prostřednictvím webu nebo posíláním e-mailů. Nyní se o nových prezentací sledovaných uživatelů nebo nasdílení prezentace uživatel nedozví. Vidí je pouze ve výpisech na hlavní stránce webu, vizuálně ale uživatel není nijak upozorněn.
+
+\subsection{Import a export prezentací}
+Pro uživatele by bylo výhodné přidat i podporu pro import a export z/do různých formátů. Import uživateli ušetří čas při sdílení existujících prezentací v jiných formátech. Export pak lze využít pro prohlížení prezentací bez připojení k internetu.
+
+\subsection{Členění a seskupování prezentací}
+Prezentace se nyní dají vyhledávat jen pomocí názvu nebo podle autora. Další možností by bylo přidat k prezentacím štítky. Vyhledávání by pak mohlo fungovat i podle štítků. Také sdílení by šlo vylepšit tím, že by uživatel mohl sledovat jednotlivé štítky a být upozorněn v případě nové prezentace s daným štítkem.
+
+Prezentace by si také zasloužily lepší organizaci. Často se stává, že jeden uživatel má více prezentací, které spolu souvisí (například prezentace z přednášek jednoho předmětu nebo kurzu). Strukturování prezentací do jakých si složek nebo seznamů by tak bylo užitečnou vlastností.
+
+\subsection{Bezpečnost}
+Důležitou částí dalšího vývoje by mělo být zaměření na bezpečnost systému. V tuto chvíli mi dělá starost existující možnost zanesení škodlivého JavaScriptového kódu do prezentace při úpravě vzhledu prezentace. V některých prohlížečích lze totiž v CSS spouštět JavaScriptový kód. Řešením by bylo CSS kód automaticky projít a všechny výskyty JavaScriptu odstranit. Není to ale tak jednoduché, například kvůli komentářům či dalším technikám obfuskace kódu.
+
+
+\chapter{Závěr}
+Výsledkem této bakalářské práce je funkční základ webového portálu pro tvorbu a sdílení prezentací založených na technologii HTML. Navržený systém byl realizován a nasazen na produkčním serveru\footnote{\url{http://slide-it.eu01.aws.af.cm/}} pomocí cloudové služby AppFog. Požadovaná funkčnost byla implementována, ale stále je prostor pro další vylepšení a rozšiřování systému, který by zlepšil přívětivost aplikace pro uživatele.
+
+Projektu se ale nevyhnuly určité problémy, ať už technologické či časové. Nedostalo se tak na spousty nápadů, které by systém posunuly kvalitativně dál, aby mohl konkurovat zavedeným portálům. Přese vše jsem ale s projektem a svou prací na něm spokojen. Vyzkoušel jsem si také několik nových a zajímavých technologií, které mě obohatily a které nejspíš využiji i v budoucnu.
 
 
 
@@ -711,6 +813,110 @@ Více práce by si rozhodně zasloužila podoba editoru a obecná uživatelská 
 
 \printnomenclature
 
+\chapter{Ukázky kódu}\label{chap:ukazkykodu}
+
+
+\begin{lstlisting}[caption={Ukázka integračních testů},label={lst:integrationtest},
+language=php,
+numbers=left,
+breaklines=true]
+<?php
+
+class PresentationRepositoryTest extends BaseDbTestCase {
+
+	/** @var PresentationRepository */
+	private $repository;
+
+	protected function setUp() {
+		parent::setUp();
+		$this->repository = new PresentationRepository($this->container->database);
+	}
+
+	public function testDeletePresentation() {
+		$pres = $this->repository->create(1, 'testFoo', 'testFoo');
+		$this->assertNotNull($this->repository->getById($pres->id));
+
+		$this->repository->delete($pres->id, $pres->author->id);
+
+		$this->assertNull($this->repository->getById($pres->id));
+	}
+
+	public function testChangeNameAndSlug() {
+		$pres1 = $this->repository->getById(1);
+		$this->repository->changeNameAndSlug($pres1, 'test foo name', 'test foo slug');
+
+		$pres2 = $this->repository->getById(1);
+		$this->assertEquals('test foo name', $pres2->name);
+		$this->assertEquals('test-foo-slug', $pres2->slug);
+
+		$this->assertEquals($pres1->name, $pres2->name);
+		$this->assertEquals($pres1->slug, $pres2->slug);
+	}
+
+	public function testChangeNameAndSlugToExisting() {
+		$this->setExpectedException('DuplicateEntryException');
+
+		$pres = $this->repository->getById(1);
+		$this->repository->changeNameAndSlug($pres, 'testFooName', 'test2');
+	}
+
+}
+\end{lstlisting}
+
+\newpage
+
+\begin{lstlisting}[caption={Ukázka Selenium testu},label={lst:seleniumtest},
+language=php,
+numbers=left,
+breaklines=true]
+<?php
+
+class SeleniumTest extends PHPUnit_Extensions_SeleniumTestCase {
+
+	public function setUp() {
+		parent::setUp();
+		$this->setBrowser("*firefox");
+		$this->setBrowserUrl($this->url);
+	}
+
+	private function loginTest() {
+		$this->open($this->url . '/sign/in');
+
+		// bad username
+		$this->type("id=frmsignInForm-username", "testerXXXtesterXXXtesterXXXtester");
+		$this->type("id=frmsignInForm-password", "test");
+		$this->click("id=frmsignInForm-send");
+		$this->waitForPageToLoad("10000");
+		$this->assertTextPresent("'testerXXXtesterXXXtesterXXXtester'");
+		$this->assertTextPresent("not found");
+
+		// bad password
+		$this->type("id=frmsignInForm-username", "tester");
+		$this->type("id=frmsignInForm-password", "BadBadBadPassword");
+		$this->click("id=frmsignInForm-send");
+		$this->waitForPageToLoad("10000");
+		$this->assertTextPresent("Invalid password");
+	}
+	
+}
+\end{lstlisting}
+
+\chapter{Grafy průběhů zátěžových testů}\label{chap:loadtest}
+
+\hvFloat[%
+floatPos=htb,%
+capVPos=c,%
+rotAngle=90,
+objectPos=c]{figure}{\includegraphics[width=20cm]{PRO-img/presentation-load.png}}%
+[Graf průběh zátěžového testu stránky s prezentací]{Graf průběhu zátěžového testu stránky s prezentací ukazuje dobu načtení stránky (modrá čára), počet aktivních uživatelů (zelená čára) a počet požadavků za sekundu (oranžová čára)}{fig:test1}
+
+\hvFloat[%
+floatPos=htb,%
+capVPos=c,%
+rotAngle=90,
+objectPos=c]{figure}{\includegraphics[width=20cm]{PRO-img/user-load.png}}%
+[Graf průběhu zátěžového testu stránky s prezentacemi uživatele]{Graf průběh zátěžového testu stránky s prezentacemi uživatele ukazuje dobu načtení stránky (modrá čára), počet aktivních uživatelů (zelená čára) a počet požadavků za sekundu (oranžová čára)}{fig:test2}
+	
 
 \chapter{Obsah přiloženého CD}
 
