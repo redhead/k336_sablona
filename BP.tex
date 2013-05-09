@@ -136,7 +136,7 @@ unicode=true,
 
 	\acknowledgements
 	\noindent
-	Rád bych zde poděkoval své rodině, která mne po celou dobu mého studia podporovala. Dále bych chtěl poděkovat Ing. Ondřeji Mackovi, vedoucímu mé bakalářské práci, za odlehčený přístup a komunikaci v přátelském duchu.
+	Rád bych zde poděkoval své rodině, která mě po celou dobu studia podporovala. Dále bych chtěl poděkovat Ing. Ondřeji Mackovi, vedoucímu této bakalářské práce, za odlehčený přístup a komunikaci v přátelském duchu.
 
 
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%   
@@ -160,7 +160,7 @@ unicode=true,
 	\vskip 2.75\baselineskip
 
 	\noindent
-	V této práci se zabývám analýzou, návrhem a vývojem webového nástroje pro tvorbu a sdílení prezentací. Dozvíte se, co bylo úkolem tohoto projektu, jak byl navržen a jaká vyvstala úskalí při jeho implementaci a realizaci. V neposlední řadě se dočtete o testování a nasazení systému do produkčního prostředí.
+	Předmětem této práce je návrh a vývoj webového nástroje pro tvorbu a sdílení HTML prezentací. Cílem je vytvořit portál, který umožní tvorbu webových prezentací za účelem jejich prohlížení a sdílení. Obsahem této práce je analýza, návrh, implementace a testování systému.
 
 	%%%%%%%%%%%%%%%%%%%%%%%%%%    
 	% obsahy a seznamy
@@ -198,7 +198,7 @@ V této kapitole je představena vize vyvíjeného systému. Dále je čtenář 
 \section{Popis problému, cíle}
 Cílem projektu je vytvořit webový nástroj pro tvorbu, úpravu a sdílení prezentací založených na technologii HTML5.
 
-V současné době se většina aplikací, nástrojů a služeb přesouvá na internet, kde se mimo jiné klade důraz na sdílení mezi uživateli. Prezentace nejsou výjimkou a na trhu lze najít již několik zavedených služeb, které se tvorbou a sdílením prezentací zabývají (více na str. \pageref{chap:existujiciSystemy}). S příchodem HTML5 a CSS3\footnote{V době psaní této práce bylo HTML5 ve stádiu návrhu organizací W3C. \cite{html5-2014}} se objevily knihovny, které využívají těchto nových technologií pro zobrazení webových prezentací přímo v prohlížeči bez doplňků třetích stran.
+V současné době se většina aplikací, nástrojů a služeb přesouvá na internet, kde se mimo jiné klade důraz na sdílení mezi uživateli. Prezentace nejsou výjimkou a na trhu lze najít již několik zavedených služeb, které se tvorbou a sdílením prezentací zabývají (více na str. \pageref{chap:existujiciSystemy}). S příchodem HTML5 a CSS3\footnote{V době psaní této práce bylo HTML5 ve stádiu návrhu organizací W3C.~\cite{html5-2014}} se objevily knihovny, které využívají těchto nových technologií pro zobrazení webových prezentací přímo v prohlížeči bez doplňků třetích stran.
 
 Tento webový portál tak bude využívat těchto nových technologií a knihoven pro poskytnutí možnosti tvorby vlastních prezentací na webu, jejich prohlížení a také sdílení dalším uživatelům.
 
@@ -292,7 +292,7 @@ Zobrazení právě jednoho snímku, přecházení mezi snímky a držení stavu 
 
 
 \section{Výběr JavaScriptové knihovny}
-Knihoven pro zobrazení prezentací založených na technologii (X)HTML byla vytvořena celá řada (viz \cite{htmlslideshowweb}). Většina z nich je ovšem už zastaralá, nefunkční nebo neodpovídající požadovaným kvalitám, například použitelností, uživatelské či implementační, nebo zastaralým vzhledem. Následující seznam uvádí několik zdařilých knihoven, které se objevily po uvedení podpory HTML5 v~prohlížečích.
+Knihoven pro zobrazení prezentací založených na technologii (X)HTML byla vytvořena celá řada (viz~\cite{htmlslideshowweb}). Většina z nich je ovšem už zastaralá, nefunkční nebo neodpovídající požadovaným kvalitám, například použitelností, uživatelské či implementační, nebo zastaralým vzhledem. Následující seznam uvádí několik zdařilých knihoven, které se objevily po uvedení podpory HTML5 v~prohlížečích.
 
 \begin{itemize}
 	\item reveal.js
@@ -317,10 +317,10 @@ HTML5 šablonu od Googlu\footnote{\url{https://code.google.com/p/io-2012-slides/
 Knihovna ovšem nenabízí žádnou dokumentaci a tak snižuje možnost na další rozšíření. Dále má prezentace pevnou velikost a tak na menších displejích či oknech jsou snímky oříznuté. Nevýhodou je také o něco složitější konfigurace.
 
 \subsection{Deck.js}
-Knihovna deck.js\footnote{\url{https://github.com/imakewebthings/deck.js}} je v základu o něco jednodušší než ostatní knihovny výše. Je napsaná s pomocí knihovny jQuery\cite{jQuery}, je velmi dobře zdokumentovaná a rozšiřitelná. Existuje pro ni řada pluginů, například již zmíněný prezentační mód či podpora Markdown syntaxe pro popis snímků. 
+Knihovna deck.js\footnote{\url{https://github.com/imakewebthings/deck.js}} je v základu o něco jednodušší než ostatní knihovny výše. Je napsaná s pomocí knihovny jQuery~\cite{jQuery}, je velmi dobře zdokumentovaná a rozšiřitelná. Existuje pro ni řada pluginů, například již zmíněný prezentační mód či podpora Markdown syntaxe pro popis snímků. 
 
 \subsection{Zhodnocení}
-Pro účely tohoto projektu byla vybrána knihovna deck.js, která je sice o něco jednodušší, ale líbí se mi více celkový vzhled a jednoduchost a to, že je postavena na jQuery. Případně lze také využít existujících rozšíření nebo vytvořit vlastní. Knihovna reveal.js ovšem urazila během práce na tomto projektu velký kus cesty a v současné době je asi nejvíce rozšířenou a používanou knihovnou pro HTML prezentace. O knihovně již byla také napsána výuková kniha \cite{howtobook}.
+Pro účely tohoto projektu byla vybrána knihovna deck.js, která je sice o něco jednodušší, ale líbí se mi více celkový vzhled a jednoduchost a to, že je postavena na jQuery. Případně lze také využít existujících rozšíření nebo vytvořit vlastní. Knihovna reveal.js ovšem urazila během práce na tomto projektu velký kus cesty a v současné době je asi nejvíce rozšířenou a používanou knihovnou pro HTML prezentace. O knihovně již byla také napsána výuková kniha~\cite{howtobook}.
 
 
 \section{Webový portál}
@@ -430,13 +430,13 @@ Komentář se váže k~jedné prezentaci a jednomu uživateli (autorovi komentá
 V následujícím textu bude čtenář seznámen s detailním návrhem systému, použitými technologiemi a knihovnami.
 
 \section{Serverová část}
-Webový back-end jsem se rozhodl napsat v~programovacím jazyce PHP s~použitím českého webového aplikačního frameworku Nette\cite{nette}. Pro uchování dat byla použita databáze MySQL\cite{mysql}.
+Webový back-end jsem se rozhodl napsat v~programovacím jazyce PHP s~použitím českého webového aplikačního frameworku Nette~\cite{nette}. Pro uchování dat byla použita databáze MySQL~\cite{mysql}.
 
 \subsection{Nette Framework}
 Nette Framework je aplikační framework, který usnadňuje řešení mnoho problémů v oblasti webového vývoje v PHP. Implementuje návrhový vzor \nomExpl{MVP}{Model-View-Presenter} rozdělující aplikaci na logické vrstvy (viz níže). Běh aplikace je řízen událostmi, tedy využívá událostmi řízené programování. Dále obsahuje komponentový model zaměřený na znovupoužitelnost.
 
 \subsection{MVP}
-Návrhový vzor Model-View-Presenter řeší problém oddělení datové vrstvy, řízení událostí (např. od uživatele) a vykreslení daných dat\citep{mvp}. Následuje popis jednotlivých vrstev a jejich společné interakce.
+Návrhový vzor Model-View-Presenter řeší problém oddělení datové vrstvy, řízení událostí (např. od uživatele) a vykreslení daných dat~\cite{mvp}. Následuje popis jednotlivých vrstev a jejich společné interakce.
 
 \begin{itemize}
 	\item Model - poskytuje rozhraní pro data určená k zobrazení
@@ -445,7 +445,7 @@ Návrhový vzor Model-View-Presenter řeší problém oddělení datové vrstvy,
 \end{itemize}
 
 \subsection{Architektura aplikační logiky}
-Nette Framework ovšem neposkytuje žádné vlastní řešení modelové vrstvy a nechává tak programátorovi volné ruce na využití jiných knihoven nebo vlastních řešení zaměřujících se na obchodní a datovou logiku. Do presenteru je pak možné tyto služby předat pomocí návrhového vzoru Dependency injection\cite{di}.
+Nette Framework ovšem neposkytuje žádné vlastní řešení modelové vrstvy a nechává tak programátorovi volné ruce na využití jiných knihoven nebo vlastních řešení zaměřujících se na obchodní a datovou logiku. Do presenteru je pak možné tyto služby předat pomocí návrhového vzoru Dependency injection~\cite{di}.
 
 Pro tento projekt byla využita databázová vrstva Nette\textbackslash{}Database, která poskytuje jednoduché rozhraní pro získávání dat z databáze. Komunikace s databází pak byla zabalena do repositářů, jenž poskytují metody pro navrácení jednotlivých entit a tvorbu a mazání záznamů. V případech, kdy je logika složitější a repositáře tuto funkčnost nemohou vykonat, je přidána další vrstva, fasáda. 
 
@@ -470,21 +470,21 @@ Lepší představu o průběhu chodu aplikace při uživatelském požadavku zí
 
 
 \section{Klientská část}
-Na klientské prostředí jsou přenášeny výstupy v podobě HTML stránek. Pro jejich oživení a zlepšení uživatelské použitelnosti (např. klientské validace formulářů) se používá JavaScript. Vlastní kód byl však napsán v CoffeeScriptu\cite{coffee}, transkompilátoru, který se kompiluje do běžného JavaScriptu. 
+Na klientské prostředí jsou přenášeny výstupy v podobě HTML stránek. Pro jejich oživení a zlepšení uživatelské použitelnosti (např. klientské validace formulářů) se používá JavaScript. Vlastní kód byl však napsán v CoffeeScriptu~\cite{coffee}, transkompilátoru, který se kompiluje do běžného JavaScriptu. 
 
-Dále byla použita JavaScriptová knihovna jQuery\cite{jQuery}, která usnadňuje práci s HTML dokumentem a sjednocuje implementační rozdíly mezi prohlížeči.
+Dále byla použita JavaScriptová knihovna jQuery~\cite{jQuery}, která usnadňuje práci s HTML dokumentem a sjednocuje implementační rozdíly mezi prohlížeči.
 
-Pro vzhled a grafické uživatelské rozhraní byl použit framework Bootstrap\cite{bootstrap}, který velmi usnadnil prototypování uživatelského rozhraní portálu bez nutnosti tvořit vzhled a ladit ho pro každý prohlížeč zvlášť. Dále poskytuje jednoduché metody pro tvorbu nabídek či zobrazení dialogových oken. Výhodou je i to, že Bootstrap poskytuje responsivní design a tak by se měl web chovat a zobrazovat dobře i na mobilních zařízeních.
+Pro vzhled a grafické uživatelské rozhraní byl použit framework Bootstrap~\cite{bootstrap}, který velmi usnadnil prototypování uživatelského rozhraní portálu bez nutnosti tvořit vzhled a ladit ho pro každý prohlížeč zvlášť. Dále poskytuje jednoduché metody pro tvorbu nabídek či zobrazení dialogových oken. Výhodou je i to, že Bootstrap poskytuje responsivní design a tak by se měl web chovat a zobrazovat dobře i na mobilních zařízeních.
 
 
 \section{Editor}
 Editoru prezentací byl přikládán větší význam, neboť bez této komponenty by systém nemohl realizovat myšlenku tohoto projektu. Značně se také liší od ostatních obyčejných webových stránek, jelikož se jedná z větší části o ryze klientskou jednostránkovou miniaplikaci.
 
-Právě proto používá editor pár technologií navíc. Jako nejdůležitější se ukázalo použití JavaScriptového \nom{MVC}{Model-View-Controller} frameworku AngularJS\cite{angular}. Jeho hlavní předností je dvoucestné provázání dat mezi pohledem (view) a modelem na straně klienta. Každá změna v~modelu se pak automaticky propaguje do pohledu a naopak. Snižuje se tak množství kódu, který otrocky nastavuje nebo zobrazuje data při jednotlivé změně. 
+Právě proto používá editor pár technologií navíc. Jako nejdůležitější se ukázalo použití JavaScriptového \nom{MVC}{Model-View-Controller} frameworku AngularJS~\cite{angular}. Jeho hlavní předností je dvoucestné provázání dat mezi pohledem (view) a modelem na straně klienta. Každá změna v~modelu se pak automaticky propaguje do pohledu a naopak. Snižuje se tak množství kódu, který otrocky nastavuje nebo zobrazuje data při jednotlivé změně. 
 
-Pro popis obsahu snímku, jak bylo zmíněno v analýze, byl se používá jednoduchý textový značkovací jazyk, který převádí text do HTML. Pro převod tohoto textu je použita PHP knihovna Texy!\cite{texy}, která implementuje vlastní stejnojmenný značkovací jazyk. Výhodou této knihovny je snadná rozšiřitelnost a také typografické úpravy výsledného textu. Více o výběru knihovny se dozvíte v~následující kapitole.
+Pro popis obsahu snímku, jak bylo zmíněno v analýze, byl se používá jednoduchý textový značkovací jazyk, který převádí text do HTML. Pro převod tohoto textu je použita PHP knihovna Texy!~\cite{texy}, která implementuje vlastní stejnojmenný značkovací jazyk. Výhodou této knihovny je snadná rozšiřitelnost a také typografické úpravy výsledného textu. Více o výběru knihovny se dozvíte v~následující kapitole.
 
-Součástí editoru je také panel nástrojů, který doplňuje textový vstup pro popis snímku. Uživateli ulehčí práci s psaním zdrojového~textu, například možností vložit značky pro tučné písmo či kurzívu atd. Pro panel nástrojů byla použita knihovna Texyla\cite{texyla}.
+Součástí editoru je také panel nástrojů, který doplňuje textový vstup pro popis snímku. Uživateli ulehčí práci s psaním zdrojového~textu, například možností vložit značky pro tučné písmo či kurzívu atd. Pro panel nástrojů byla použita knihovna Texyla~\cite{texyla}.
 
 
 
@@ -497,9 +497,9 @@ V~první fázi vývoje jsem se zabýval myšlenkou editoru prezentace jako hlavn
 \subsection{WYSIWYG editor}
 Při prvním prototypování editoru snímků prezentace se počítalo s~použitím WYSIWYG editoru, tedy editoru, kde jsou změny vidět v reálném čase a uživatel při samotné úpravě snímků okamžitě vidí, jak bude vypadat konečný výsledek. Výhodou je, že uživatel nepotřebuje znát ani jazyk HTML (i když knihovny často poskytují i možnost kód HTML upravovat). Existuje mnoho knihoven, které WYSIWYG editor různě implementují. Protože ale neexistuje žádný standard, každý prohlížeč se chová trochu jinak a zároveň každá knihovna si různé věci implementuje po svém.
 
-Nejdříve byla otestována WYSIWYG knihovna Aloha Editor\cite{aloha}, která se nejčastěji používá v \nom{CMS}{Content Management System} systémech. Nabízí několik zajímavých vlastností jako je např. repositář - prohlížeč obrázků, souborů či vlastních uživatelských objektů. Potíže ovšem nastaly se zobrazením panelu nástrojů a špatnou podporou CSS3 transformací, které jsou použity ve vzhledu deck.js prezentací.
+Nejdříve byla otestována WYSIWYG knihovna Aloha Editor~\cite{aloha}, která se nejčastěji používá v \nom{CMS}{Content Management System} systémech. Nabízí několik zajímavých vlastností jako je např. repositář - prohlížeč obrázků, souborů či vlastních uživatelských objektů. Potíže ovšem nastaly se zobrazením panelu nástrojů a špatnou podporou CSS3 transformací, které jsou použity ve vzhledu deck.js prezentací.
 
-Jako další editor byl vyzkoušen Mercury Editor\cite{mercury}, který se zdál být vhodnější a komplexnější. I když se jedná o JavaScriptovou knihovnu, je vyvíjena v~Ruby pro použití v~Ruby On Rails aplikacích a tak bylo hodně věcí přizpůsobeno těmto technologiím (například počítala s~partial pohledy, které se posílají pomocí technologie \nom{AJAX}{Asynchronous JavaScript and XML} ze serveru). Nicméně knihovna není na jazyce Ruby závislá a lze ji použít bez něj.
+Jako další editor byl vyzkoušen Mercury Editor~\cite{mercury}, který se zdál být vhodnější a komplexnější. I když se jedná o JavaScriptovou knihovnu, je vyvíjena v~Ruby pro použití v~Ruby On Rails aplikacích a tak bylo hodně věcí přizpůsobeno těmto technologiím (například počítala s~partial pohledy, které se posílají pomocí technologie \nom{AJAX}{Asynchronous JavaScript and XML} ze serveru). Nicméně knihovna není na jazyce Ruby závislá a lze ji použít bez něj.
 
 Zde se ale po chvíli objevily problémy technického rázu – prohlížeče se právě díky neexistujícímu standardu chovaly rozdílně nebo se nechovaly podle očekávání. Výsledkem pak byl například špatný HTML kód nebo kód, který se už nedal nijak pomocí editoru opravit ani smazat. Jedním z~největších problémů bylo vkládání nového řádku. Prohlížeč někdy vložil značku odřádkování \verb|<br>| někdy nový odstavec \verb|<p>|. Chování tak nebylo předvídatelné. 
 
@@ -510,9 +510,9 @@ Všechny tyto problémy nakonec vyústily k rozhodnutí použít značkovací ja
 převádí text do HTML. V~poslední době získávají tyto jazyky velkou popularitu kvůli jednoduchosti a velmi dobré podobě
 výsledného HTML kódu.
 
-Asi nejvíce používaným jazykem, hlavně ve světě IT, je Markdown\cite{markdown}, který byl původně napsán v jazyce Perl. Vzniklo mnoho portů této knihovny do různých jazyků, včetně PHP. Port knihovny pro PHP je ovšem velmi komplexní a zdálo se nemožné ho upravit pro potřeby implementace dalších požadovaných funkcí do prezentace.
+Asi nejvíce používaným jazykem, hlavně ve světě IT, je Markdown~\cite{markdown}, který byl původně napsán v jazyce Perl. Vzniklo mnoho portů této knihovny do různých jazyků, včetně PHP. Port knihovny pro PHP je ovšem velmi komplexní a zdálo se nemožné ho upravit pro potřeby implementace dalších požadovaných funkcí do prezentace.
 
-Proto nakonec bylo rozhodnuto využít jazyk Texy!\cite{texy}, který je jazyku Markdown podobný, ovšem syntaxe se občas liší. Knihovna Texy! je ovšem velmi dobře rozdělená na logické jednotky - moduly. Jednotlivé konverze (např. nadpis nebo tučné písmo) se pak provádí ve funkcích těchto modulů. Za největší výhodu ale považuji rozšiřitelnost a upravitelnost knihovny. Moduly lze konfigurovat či vypínat a nechybí ani možnost definovat vlastní konverze. Lze se tak snadněji přiblížit syntaxi jazyku Markdown, primárním cílem toto ovšem nebylo.
+Proto nakonec bylo rozhodnuto využít jazyk Texy!~\cite{texy}, který je jazyku Markdown podobný, ovšem syntaxe se občas liší. Knihovna Texy! je ovšem velmi dobře rozdělená na logické jednotky - moduly. Jednotlivé konverze (např. nadpis nebo tučné písmo) se pak provádí ve funkcích těchto modulů. Za největší výhodu ale považuji rozšiřitelnost a upravitelnost knihovny. Moduly lze konfigurovat či vypínat a nechybí ani možnost definovat vlastní konverze. Lze se tak snadněji přiblížit syntaxi jazyku Markdown, primárním cílem toto ovšem nebylo.
 
 Výhodou je také možnost specifikovat CSS třídy nebo určit zarovnání textu či obrázku. To je vlastnost, kterou jazyk Markdown nepodporuje. Značným kladem knihovny Texy! je také vynikající podpora typografie. Například sekvenci znaků „\lstinline|+-|“ nahradí za jediný znak „$\pm$“, jednoduchou pomlčku nahrazuje za spojovník (pokud je to ve větě potřeba), tři tečky nahradí za jediný znak trojtečky, vkládá nedělitelné mezery za spojky atp. V dokumentech jako je webová stránka nebo prezentace se tato vlastnost velmi hodí.
 
@@ -640,7 +640,7 @@ V mnoha prezentacích se můžeme setkat s více tématy nebo podtématy, o kter
 Protože tento nástroj byl zaměřen na použití ve vzdělávacích institucích, bylo dobrou myšlenkou rozšířit možnosti prezentační knihovny o další pomocné funkce. Rozhodl jsem se proto implementovat funkci zvýraznění syntaxe bloků programovacích jazyků, která se určitě bude hodit prezentujícím vývojářům, a dále zobrazení matematických vzorců ve formátu \LaTeX, které bude možné použít například v prezentacích z oboru matematiky.
 
 \subsection{Zvýraznění syntaxe programovacích jazyků}
-Pro zobrazení kódu používá knihovna Texy! blokovou syntaxi jakou můžete vidět ve výpisu \ref{lst:code}. Po převodu tohoto textu do HTML se uvedený kus kódu obalí do sebe vnořených sémantických HTML značek \verb|<pre>| a \verb|<code>|. Toho je pak využito při zvýraznění syntaxe, jež je zajištěno pomocí knihovny highlight.js\cite{highlight}, která automaticky tyto bloky kódu za použití detekce jazyka zvýrazní. Knihovna podporuje více než 50 jazyků.
+Pro zobrazení kódu používá knihovna Texy! blokovou syntaxi jakou můžete vidět ve výpisu \ref{lst:code}. Po převodu tohoto textu do HTML se uvedený kus kódu obalí do sebe vnořených sémantických HTML značek \verb|<pre>| a \verb|<code>|. Toho je pak využito při zvýraznění syntaxe, jež je zajištěno pomocí knihovny highlight.js~\cite{highlight}, která automaticky tyto bloky kódu za použití detekce jazyka zvýrazní. Knihovna podporuje více než 50 jazyků.
 
 \begin{lstlisting}[caption={Ukázka blokové syntaxe pro výpis kódu},label={lst:code}]
 /--code
@@ -650,7 +650,7 @@ SELECT * FROM `presentations` where `id` = 1;
 
 
 \subsection{Matematické vzorce}
-Další přidanou hodnotou do prohlížení prezentací bylo zavedení zobrazení matematických vzorců a rovnic. Není totiž nijak uživatelsky příjemné tyto vzorce vytvářet jako obrázky a vkládat je pak do prezentace. Pro implementaci této vlastnosti byla použita JavaScriptová knihovna MathJax\citep{mathjax}, která automaticky vyhledává zdrojový text ve formátu \LaTeX\cite{latex} ve specifické syntaxi a následně je vysází pomocí HTML a CSS za použití webových fontů. Není tedy potřeba žádných dalších technologií třetích stran, jako například Flash, a zároveň se nejedná o obrázky, zachovává si tak všechny vlastnosti okolního textu, jako barva či velikost.
+Další přidanou hodnotou do prohlížení prezentací bylo zavedení zobrazení matematických vzorců a rovnic. Není totiž nijak uživatelsky příjemné tyto vzorce vytvářet jako obrázky a vkládat je pak do prezentace. Pro implementaci této vlastnosti byla použita JavaScriptová knihovna MathJax~\cite{mathjax}, která automaticky vyhledává zdrojový text ve formátu \LaTeX~\cite{latex} ve specifické syntaxi a následně je vysází pomocí HTML a CSS za použití webových fontů. Není tedy potřeba žádných dalších technologií třetích stran, jako například Flash, a zároveň se nejedná o obrázky, zachovává si tak všechny vlastnosti okolního textu, jako barva či velikost.
 
 Podmínkou pro vyhledání a zobrazení vzorců je ohraničení zdrojového textu vzorců oddělovači. Ty jsou dvojího druhu, protože knihovna podporuje zobrazení jak blokových vzorců, tak tzv. inline vzorců, ty mohou být součástí odstavců textu. Oddělovače pro inline vzorce jsou \verb|$(| a \verb|)$|, pro blokové vzorce pak \verb|$$| a \verb|$$|. Ukázku použití této syntaxe spolu se vzorovým zdrojovým textem několika rovnic vidíte ve výpisu \ref{lst:rovnice}, výsledný snímek s vysázenými matematickými rovnicemi vidíte na obrázku \ref{fig:rovnice}.
 
@@ -683,7 +683,7 @@ V současné době se ale software nejčastěji testuje s pomocí automatických
 
 
 \section{Test Driven Development}
-\nomExpl{TDD}{Test Driven Development} neboli vývoj řízený testy je metodika vývoje software, kdy se test píše dříve než kód, který má daný test ověřit. Použití této metodiky má několik výhod - test je psán bez znalosti vnitřní implementace ověřovaného kódu a je tak pro programátora těžší být ovlivněn vlastní implementací. Vedlejším efektem je pak i lepší návrh aplikace. Protože v testech se snažíme psát co nejméně kódu, programátor se pak snaží testovaný kód mít co nejjednodušší pro nastavení a inicializaci, což prospívá i jednoduchosti samotné implementace.
+\nomExpl{TDD}{Test Driven Development}~\cite{tdd} neboli vývoj řízený testy je metodika vývoje software, kdy se test píše dříve než kód, který má daný test ověřit. Použití této metodiky má několik výhod - test je psán bez znalosti vnitřní implementace ověřovaného kódu a je tak pro programátora těžší být ovlivněn vlastní implementací. Vedlejším efektem je pak i lepší návrh aplikace. Protože v testech se snažíme psát co nejméně kódu, programátor se pak snaží testovaný kód mít co nejjednodušší pro nastavení a inicializaci, což prospívá i jednoduchosti samotné implementace.
 
 Tento projekt je prvním, kdy jsem se snažil používat metodiku TDD. Ne vždy se to však povedlo, neboť jsem byl zvyklý na opačný postup. Nejvíce jsem jej využil při úpravě a implementaci nových syntaxí v knihovně Texy!, kdy jsem si pro požadované výstupy knihovny napsal test předem a poté dané změny syntaxe implementoval. Dále pak bylo TDD použito při refaktorování backendu aplikace.
 
@@ -697,7 +697,7 @@ V tomto projektu byly unit testy psány hlavně při úpravě syntaxe knihovny T
 
 Protože jsou výstupy testů syntaxe často dlouhé a ve zdrojovém souboru by byly nepřehledné, byly jak vstupy tak očekávané výstupy jednotlivých testů přesunuty do textových souborů. Vstupní soubory se pak dávkově nahrávaly do testu a výstup se kontroloval oproti souborům s očekávanými výstupy.
 
-Unit testy byly napsány s pomocí PHP frameworku pro jednotkové testování PHPUnit\cite{phpunit}.
+Unit testy byly napsány s pomocí PHP frameworku pro jednotkové testování PHPUnit~\cite{phpunit}.
 
 
 \section{Integrační testy}
@@ -708,22 +708,21 @@ Tímto způsobem byla v projektu testovaná modelová vrstva aplikace, tedy enti
 \begin{table}[H]
     \center \begin{tabular}{ll}
     Počet testů           & 57  \\
-    Počet úspěšných testů & 56  \\
+    Počet úspěšných testů & 57  \\
     Pokrytí kódu          & 52 \%  \\
     \end{tabular}
 \end{table}
 
-Neprocházející test ověřuje, že nelze nasdílet prezentaci neexistujícímu uživateli (s neznámým ID uživatele). Tuto chybu ovšem není možné udělat přes webové rozhraní, a proto jsem chybu neopravil. Test jsem ponechal pro případný další vývoj.
 
 \section{Selenium testy}
-Pro testování uživatelského rozhraní byl použit systém Selenium\citep{selenium}. Jeho hlavním úkolem je automatizace webových prohlížečů, nejčastěji se ale používá právě jako testovací nástroj. 
+Pro testování uživatelského rozhraní byl použit systém Selenium~\cite{selenium}. Jeho hlavním úkolem je automatizace webových prohlížečů, nejčastěji se ale používá právě jako testovací nástroj. 
 
 Selenium poskytuje rozhraní pro komunikaci s různými prohlížeči různých verzí. Testy se skládají ze scénářů, tedy předem definovaných kroků prohlížeče (např. kliknutí na odkaz nebo vyplnění formulářového pole) a díky komunikačnímu rozhraní lze také z prohlížeče získávat informace (např. zda-li se na stránce objevuje nějaké slovní spojení). Tyto scénáře můžou být interaktivně vytvořeny pomocí Selenium IDE (pouze pro prohlížeč Firefox) a pak je lze opakovaně spouštět. Další možností je použít Selenium Remote Control (RC), který dokáže prohlížeč spustit a vykonat scénáře definované v nějakém z podporovaných programovacích jazyků.
 
 Ovladač pro Remote Control jazyk PHP podporuje a zmíněný testovací framework PHPUnit poskytuje rozšíření implementující klient-server protokol pro komunikaci s RC. Navíc také nabízí specializované metody pro testování. Ve výpisu \ref{lst:seleniumtest} v příloze \ref{chap:ukazkykodu} se můžete podívat, jak takový test vypadá.
 
 \section{Zátěžové testy}
-Zátěžové testy prověřují chování aplikace pod narůstajícím počtem požadavků. Je tak snadné zjistit, zda-li je aplikace dostatečně rychlá a zda-li ustojí větší počet aktivních uživatelů. Pro otestování tohoto projektu nasazeném na AppFog jsem se rozhodl využít webový nástroj Load Impact\cite{loadimpact}, jenž zdarma poskytuje zátěžové testy s maximálně 50 souběžnými virtuálními uživateli. 
+Zátěžové testy prověřují chování aplikace pod narůstajícím počtem požadavků. Je tak snadné zjistit, zda-li je aplikace dostatečně rychlá a zda-li ustojí větší počet aktivních uživatelů. Pro otestování tohoto projektu nasazeném na AppFog jsem se rozhodl využít webový nástroj Load Impact~\cite{loadimpact}, jenž zdarma poskytuje zátěžové testy s maximálně 50 souběžnými virtuálními uživateli. 
 
 Zdarma ale služba nenabízí výběr místa odkud požadavky přicházejí. To se pak podepsalo na delší odezvě serveru, neboť požadavky většinou nepřicházely z Evropy, kde se aplikační server nachází. Zvyšující se zátěž ale nepředstavovala pro aplikaci větší problém a i při plném vytížení, jenž LoadImpact poskytuje, byla doba načtení konstantní.
 
@@ -741,21 +740,21 @@ Pro chod systému je nutný spuštěný webový server, na kterém běží PHP. 
 	\item MySQL 5.5
 \end{itemize}
 
-Pro zaručení správného chodu aplikace je také dobré ověřit, zda-li server splňuje požadavky samotného Nette Frameworku. K tomu lze využít PHP skript jménem Requirements Checker, jenž je frameworkem poskytován. Více o skriptu, jeho instalaci a spuštění naleznete v dokumentaci Nette Frameworku \cite{checker}.
+Pro zaručení správného chodu aplikace je také dobré ověřit, zda-li server splňuje požadavky samotného Nette Frameworku. K tomu lze využít PHP skript jménem Requirements Checker, jenž je frameworkem poskytován. Více o skriptu, jeho instalaci a spuštění naleznete v dokumentaci Nette Frameworku~\cite{checker}.
 
 \section{Realizace nasazení}
 Pro nasazení na produkční prostředí jsem se nejdříve rozhodl využít cloudového systému PHP Fog. Pro malý počet aplikací a malý rozsah poskytoval své služby zdarma. V placených řešení bylo pak největší výhodou možnost škálování instancí aplikace či operační paměti nebo velké množství rozšíření, např. analytické nástroje či optimalizační nástroje pro databázi. Server uchovával aplikaci jako Git repositář a tak pro nahrání nové verze aplikace stačil příkaz \verb|push|.
 
-V listopadu 2012 bylo ovšem oznámeno ukončení služby PHP Fog a postupné odpojování bezplatných aplikací v průběhu prosince 2012. Jako náhrada byla doporučena podobná služba AppFog\cite{appfog} od stejné firmy \citep{phpfogdiscont}.
+V listopadu 2012 bylo ovšem oznámeno ukončení služby PHP Fog a postupné odpojování bezplatných aplikací v průběhu prosince 2012. Jako náhrada byla doporučena podobná služba AppFog~\cite{appfog} od stejné firmy~\cite{phpfogdiscont}.
 
-AppFog je cloudová služba poskytující \nomExpl{PaaS}{Platform as a Service}, tedy platformu pro ně. Na rozdíl od PHP Fogu podporuje kromě PHP i další jazyky, např. Node, Ruby či Javu. Změněn byl i způsob nahrávání aplikace, z Git repositáře přešel na vlastní konzolový nástroj, který dále nabízí i komplexní správu aplikací.
+AppFog, podobně jako PHP Fog, je cloudová služba poskytující \nomExpl{PaaS}{Platform as a Service}, tedy výpočetní platformu a k tomu funkční řešení operačního systému, webového serveru, databáze a dalších. Aplikaci tak stačí pouze nasadit a spustit. AppFog na rozdíl od PHP Fogu podporuje kromě jazyka PHP i další, např. Node, Ruby či Javu. Změněn byl i způsob nahrávání aplikace, z Git repositáře se přešlo na vlastní konzolový nástroj, který dále nabízí i komplexní správu nasazených aplikací.
 
-Nevýhodou tohoto systému je v současné době neexistující persistentní úložiště souborů, to znamená, že každá změna provedená na souborech na serveru (např. uložení obrázků nahraných uživateli aplikace), bude při nahrání nové verze aplikace nenávratně ztracena (databází se to ovšem netýkalo). Tento problém měl být vyřešen ve stejné době jako ukončení provozu PHP Fogu, avšak ani v době dokončování psaní této práce nebyla situace vyřešena.
+Nevýhodou této služby je v současné době neexistující persistentní úložiště souborů, to znamená, že každá změna provedená na souborech na serveru, např. uložení obrázků nahraných uživateli aplikace, bude při nahrání nové verze aplikace nenávratně ztracena (databází se to ovšem netýká). Tento problém měl být vyřešen ve stejné době jako ukončení provozu PHP Fogu, avšak ani v době dokončování psaní této práce nebyla situace vyřešena. Pro vložení obrázků do prezentací si tak uživatelé prozatím musí vystačit s jinými službami pro sdílení obrázků. Samotný editor ale nabízí vložení souborů ze služby Dropbox pomocí prohlížeče Dropbox Chooser~\cite{dropboxchooser}.
 
 \section{Deployment}
-Projekt byl průběžně vyvíjen na lokálním serveru a při větším počtu změn byl aktualizován produkční server. Pro řešení závislostí použitých PHP knihoven jsem přidal balíčkovací systém Composer, který kromě závislostí obstará i stažení a aktualizaci těchto knihoven. Knihovny tak nejsou součástí projektu a při nasazení je potřeba je příkazem \verb|install| do aplikace stáhnout a nainstalovat. Více se dočtete v dokumentaci Composeru \cite{composer}.
+Projekt byl průběžně vyvíjen na lokálním serveru a při větším počtu změn byl aktualizován produkční server. Pro řešení závislostí použitých PHP knihoven jsem přidal balíčkovací systém Composer, který kromě závislostí obstará i stažení a aktualizaci těchto knihoven. Knihovny tak nejsou součástí projektu a při nasazení je potřeba je příkazem \verb|install| do aplikace stáhnout a nainstalovat. Více se dočtete v dokumentaci Composeru~\cite{composer}.
 
-Další významnou součástí aktualizace systému byla migrace databáze při její změně. K tomu byla použita knihovna Phinx, kterou jsem upravil, aby používala konfigurační soubor Nette Frameworku. Při změně schématu databáze je pak nutné příkazem vytvořit PHP soubor ve složce \verb|migrate|, který obsahuje metodu pro provedení změny v databázi a také metodu pro navrácení do původního stavu. Při aktualizaci projektu je pak nutné provést příkaz \verb|migrate|, který dosud neprovedené změny databáze provede. Více informací získáte z dokumentace knihovny Phinx \cite{phinx}.
+Další významnou součástí aktualizace systému byla migrace databáze při její změně. K tomu byla použita knihovna Phinx, kterou jsem upravil, aby používala konfigurační soubor Nette Frameworku. Při změně schématu databáze je pak nutné příkazem vytvořit PHP soubor ve složce \verb|migrate|, který obsahuje metodu pro provedení změny v databázi a také metodu pro navrácení do původního stavu. Při aktualizaci projektu je pak nutné provést příkaz \verb|migrate|, který dosud neprovedené změny databáze provede. Více informací získáte z dokumentace knihovny Phinx~\cite{phinx}.
 
 
 \chapter{Zhodnocení a budoucí vývoj}
@@ -763,9 +762,9 @@ Práce na tomto projektu byla velmi zajímavá. Vyzkoušel jsem si řadu nových
 
 Výbornou zkušeností bylo také nasazení projektu na cloudové PaaS systémy. Tyto služby jsou nejen jednoduché na použití, ale poskytují široké možnosti správy a škálování aplikací. Platforma PHP ovšem trochu kulhá při větším počtu instancí a je proto nutné s řešením počítat již při vývoji aplikace. Placená řešení cloudových systémů ovšem mnohanásobně převyšují výhody vlastního serveru nebo běžných webhostingových služeb.
 
-S projektem jsem celkově spokojený, i když jsem zprvu čekal mnohem rychlejší vývoj, některé funkce tak kvůli nedostatku času či kvůli řešení jiných problémů nebyly implementovány. Problémy nastaly u prezentační knihovny a vzhledu prezentace, které zpomalovaly vývoj. Dále by bylo dobré zapracovat na zlepšení uživatelské přívětivosti a mobilní verzi.
+S projektem jsem celkově spokojený, i když jsem zprvu čekal mnohem rychlejší vývoj, některé doplňkové funkce, tzv. nice-to-have, tak kvůli nedostatku času či kvůli řešení jiných problémů nebyly implementovány. Problémy nastaly u prezentační knihovny a vzhledu prezentace, které zpomalovaly vývoj. Dále by bylo dobré zapracovat na zlepšení uživatelské přívětivosti a mobilní verzi.
 
-Z práce na projektu jsem ale zjistil, že se v době responzivních designů a dalších novinek v CSS3 začínám ztrácet a řešení vzhledu webů a \nomExpl{UX}{User experience} nestíhám sledovat. Proto bych se v dalších projektech více zaměřil na vývoji back-endu aplikací a přenechal tyto problémy zkušenějším designerům.
+Z práce na projektu jsem ale zjistil, že se v době responzivních designů a dalších novinek v CSS3 začínám ztrácet a řešení vzhledu webů a \nomExpl{UX}{User experience} nestíhám sledovat. Proto bych se v dalších projektech více zaměřil na vývoji back-endu aplikací a přenechal tyto problémy zkušenějším webovým designerům.
 
 Jsem rád, že jsem použil Nette Framework, který dobře znám a tak jsem neměl tolik problémů při vývoji serverové části. Ze začátku jsem se ovšem rozhodoval, jestli si nevyzkoušet nějakou jinou technologii, například dnes populární Ruby on Rails nebo Node.js. Při výběru jsem bral v úvahu hlavně malé zkušenosti s těmito technologiemi a bál jsem se možných problémů a mnohem pomalejšího vývoje při jejich řešení. Na druhou stranu jsem se ochudil o možnost si technologie vyzkoušet a zjistit pro a proti. Při práci na tomto projektu jsem ale zjistil, že PHP má jednu nevýhodu a to v nedokonalém ekosystému, naproti tomu Ruby on Rails dokáže pár příkazy stáhnout, nainstalovat a nakonfigurovat potřebné knihovny.
 
@@ -781,6 +780,8 @@ Jako další vylepšení by mohly sloužit notifikace (upozornění) uživatelů
 \subsection{Import a export prezentací}
 Pro uživatele by bylo výhodné přidat i podporu pro import a export z/do různých formátů. Import uživateli ušetří čas při sdílení existujících prezentací v jiných formátech. Export pak lze využít pro prohlížení prezentací bez připojení k internetu.
 
+Při práci na tomto projektu jsem pokusil o import z formátu Microsoft PowerPoint. Jednalo se ovšem jen o účelový nástroj pro několik prezentací, značně přizpůsobený jednomu typu prezentace. Importován byl pouze text každého snímku, tj. bez vzhledu či obrázků.
+
 \subsection{Členění a seskupování prezentací}
 Prezentace se nyní dají vyhledávat jen pomocí názvu nebo podle autora. Další možností by bylo přidat k prezentacím štítky. Vyhledávání by pak mohlo fungovat i podle štítků. Také sdílení by šlo vylepšit tím, že by uživatel mohl sledovat jednotlivé štítky a být upozorněn v případě nové prezentace s daným štítkem.
 
@@ -791,9 +792,9 @@ Důležitou částí dalšího vývoje by mělo být zaměření na bezpečnost 
 
 
 \chapter{Závěr}
-Výsledkem této bakalářské práce je funkční základ webového portálu pro tvorbu a sdílení prezentací založených na technologii HTML. Navržený systém byl realizován a nasazen na produkčním serveru\footnote{\url{http://slide-it.eu01.aws.af.cm/}} pomocí cloudové služby AppFog. Požadovaná funkčnost byla implementována, ale stále je prostor pro další vylepšení a rozšiřování systému, který by zlepšil přívětivost aplikace pro uživatele.
+Výsledkem této bakalářské práce je funkční základ webového portálu pro tvorbu a sdílení prezentací založených na technologii HTML. Navržený systém byl nasazen na produkčním serveru\footnote{\url{http://slide-it.eu01.aws.af.cm/}} pomocí cloudové služby AppFog. Požadovaná funkčnost byla analyzována, implementována a otestována, stále je ale prostor pro další vylepšení a rozšiřování systému.
 
-Projektu se ale nevyhnuly určité problémy, ať už technologické či časové. Nedostalo se tak na spousty nápadů, které by systém posunuly kvalitativně dál, aby mohl konkurovat zavedeným portálům. Přese vše jsem ale s projektem a svou prací na něm spokojen. Vyzkoušel jsem si také několik nových a zajímavých technologií, které mě obohatily a které nejspíš využiji i v budoucnu.
+Projektu se ale nevyhnuly určité problémy, ať už technologické či časové. Nedostalo se tak na spousty nápadů, které by systém posunuly kvalitativně dál, aby mohl konkurovat zavedeným portálům. Přese vše jsem ale s projektem a svou prací na něm spokojen. Vyzkoušel jsem si několik nových a zajímavých technologií, které mě obohatily a které nejspíš využiji i v budoucnu.
 
 
 
