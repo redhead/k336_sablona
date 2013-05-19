@@ -106,6 +106,8 @@ unicode=true,
 	caption={Výpis}
 }
 
+\usepackage{dirtree}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % vlastní dokument
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -159,7 +161,7 @@ unicode=true,
  
 	\abstractpage
 
-	Translation of Czech abstract into English.
+	The objective of this thesis is to design and develop a tool for creating and sharing HTML presentations online. The goal is to build a web application, which will provide tools for creating web-based presentations for the purpose of viewing and sharing. The content of this work covers analysis, designing, implementation and~testing of the system.
 
 	% Prace v~cestine musi krome abstraktu v~anglictine obsahovat i
 	% abstrakt v~cestine.
@@ -169,7 +171,7 @@ unicode=true,
 	\vskip 2.75\baselineskip
 
 	\noindent
-	Předmětem této práce je návrh a~vývoj webového nástroje pro tvorbu a~sdílení HTML prezentací. Cílem je vytvořit portál, který umožní tvorbu webových prezentací za~účelem jejich prohlížení a~sdílení. Obsahem této práce je analýza, návrh, imple\-mentace a~testování systému.
+	Předmětem této práce je návrh a~vývoj webového nástroje pro tvorbu a~sdílení HTML prezentací. Cílem je vytvořit webovou aplikaci, která umožní tvorbu webových prezentací za~účelem jejich prohlížení a~sdílení. Obsahem této práce je analýza, návrh, imple\-mentace a~testování systému.
 
 	%%%%%%%%%%%%%%%%%%%%%%%%%%    
 	% obsahy a~seznamy
@@ -186,12 +188,12 @@ unicode=true,
 
 
 \chapter{Úvod}
-V současné době se většina aplikací, nástrojů a~služeb přesouvá na internet, kde se mimo jiné klade důraz na sdílení mezi uživateli. Prezentace nejsou výjimkou. Jejich sdílení a~tvorba online není originální myšlenka a~na trhu existuje řada známých i méně známých portálů, které v~této oblasti dosáhly dobrých výsledků. Není ale mnoho podobných služeb, které by využívaly výhod tzv. HTML prezentací, tedy prezentací založených na rodině webových technologií HTML, CSS a JavaScript. Takové prezentace pak mohou těžit maximum ze schopností moderních webových prohlížečů a technologií a zároveň není potřeba žádných rozšíření třetích stran, neboť samotná prezentace je stále jen běžná webová stránka.
+V současné době se většina aplikací, nástrojů a~služeb přesouvá na internet, kde se mimo jiné klade důraz na sdílení mezi uživateli. Prezentace nejsou výjimkou. Jejich sdílení a~tvorba online není originální myšlenka a~na trhu existuje řada známých i méně známých služeb, které v~této oblasti dosáhly dobrých výsledků. Není ale mnoho podobných služeb, které by využívaly výhod tzv. HTML prezentací, tedy prezentací založených na rodině webových technologií HTML, CSS a JavaScript. Takové prezentace pak mohou těžit maximum ze schopností moderních webových prohlížečů a technologií a zároveň není potřeba žádných rozšíření třetích stran, neboť samotná prezentace je stále jen běžná webová stránka.
 
 \section{Cíle}
-Tento projekt má za~cíl vytvořit webový portál, který uživatelům umožní nejen snadné sdílení vlastních prezentací, ale také jejich tvorbu. Jediným nástrojem tak uživatel prezentaci vytvoří a~poté ji v~rámci portálu či jiných komunikačních kanálů, jako jsou sociální sítě, může šířit dál.
+Tento projekt má za~cíl vytvořit webovou aplikaci, která uživatelům umožní nejen snadné sdílení vlastních prezentací, ale také jejich tvorbu. Jediným nástrojem tak uživatel prezentaci vytvoří a~poté ji v~rámci aplikace či jiných komunikačních kanálů, jako jsou sociální sítě, může šířit dál.
 
-Protože na trhu již existují služby, které podobné možnosti nabízejí, chtěl jsem portál posunout dál a využít výhod, které HTML prezentace poskytují. Tvorbu a prohlížení prezentací jsem proto více zaměřil na použití ve~vzdělávacích institucích či školách a~nebo odborných konferencích, kde je důležité v~prezentacích podat důležité informace, tedy nejen hlavní body přednášky.
+Protože na trhu již existují služby, které podobné možnosti nabízejí, chtěl jsem projekt posunout dál a využít výhod, které HTML prezentace poskytují. Tvorbu a prohlížení prezentací jsem proto více zaměřil na použití ve~vzdělávacích institucích či školách a~nebo odborných konferencích, kde je důležité v~prezentacích podat důležité informace, tedy nejen hlavní body přednášky.
 
 Aplikace bude poskytovat prostředky pro zjednodušení tohoto cíle. V prezentacích tak bude možné barevně zvýraznit kód programovacích jazyků či zobrazit matematické vzorce pomocí syntaxe \LaTeX. Navíc bude možné do~snímků vkládat kontrolní otázky, na které budou moci uživatelé odpovídat, a tak si ověřit své znalosti, případně lze přidat i doplňující text s odkazem na konkrétní snímek s odpovědí. Stejně tak je důležité, aby tyto prezentace byly použitelné i mimo přednášku a podaly významné informace i bez mluveného slova, například pro domácí přípravu nebo vlastní rozvoj. 
 
@@ -250,7 +252,7 @@ Každý odstavec je uveden názvem uživatelské role, za níž následuje výč
 	\item \textbf{upravit prezentaci} v~editoru, aby ji o~něco doplnil nebo opravil chyby,
 	\item \textbf{smazat prezentaci}, aby ji odstranil ze systému,
 	\item \textbf{smazat jakýkoliv komentář} k~vlastní prezentaci, aby moderoval diskuzi,
-	\item \textbf{sdílet prezentaci} s ostatními uživateli portálu, aby si ji mohli prohlédnout.
+	\item \textbf{sdílet prezentaci} s ostatními uživateli systému, aby si ji mohli prohlédnout.
 \end{enumerate}
 
 
@@ -305,7 +307,7 @@ vlastnosti:
 
 Při vytvoření je prezentace ve~stavu \textit{nepublikováno}. Stav se změní na \textit{publikováno} při publikaci prezentace v~editoru. Pak je prezentace viditelná ostatním uživatelům v~systému.
 
-\textit{Prezentace} může být sdílena konkrétním \textit{uživatelům} portálu.
+\textit{Prezentace} může být sdílena konkrétním \textit{uživatelům} systému.
 
 
 \subsection{Koncept}
@@ -366,7 +368,7 @@ Následující odstavce stručně popisují každou z~uvedených knihoven. Nakon
 Reveal.js \cite{revealjs} je vizuálně pěkná knihovna, která kromě posunu snímků horizontálně podporuje také vnořené snímky, na které se lze dostat posunem dolů. Má několik zajímavých rozšíření, např. podpora syntaxe Mark\-Down pro psaní obsahu a~barevné zvýraznění kódu programovacích jazyků pomocí knihovny highlight.js. V~novém okně prohlížeče pak poskytuje zobrazení prezentace pro přednášejícího, který ukazuje aktuální a~následující snímek včetně poznámek.
 
 \subsection{Impress.js}
-Impress.js \cite{impressjs} se zaměřuje na vizuální jedinečnost prezentace. Dosahuje toho složitými transformacemi přechodů mezi snímky. Ty jsou rozložené v~prostoru a to nejen ve~2D, ale i ve~3D. Snímky tak lze mít v~různých velikostech, pozicích a orientacích a~při přechodu mezi nimi se pohled působivě otáčí a~přesouvá.
+Impress.js \cite{impressjs} se zaměřuje na vizuální jedinečnost prezentace. Dosahuje toho složitými transformacemi přechodů mezi snímky. Ty jsou rozložené v~prostoru a to nejen ve~2D, ale i~ve~3D. Snímky tak lze mít v~různých velikostech, pozicích a orientacích a~při přechodu mezi nimi se pohled působivě otáčí a~přesouvá.
 
 Nevýhoda této knihovny je právě v~tomto jednoúčelově pojatém zobrazení. Pro tento projekt je tak knihovna až moc složitá, hlavně kvůli určení pozic snímků a~definici transformací, a~pro informativní prezentace se příliš nehodí, neboť přechody mezi snímky spíše vyrušují.
 
@@ -384,11 +386,11 @@ Všechny výše uvedené knihovny umí v základu to samé, a to zobrazovat jedn
 \section{Vize}
 Následující odstavce popisují mojí vizi systému. Text je rozdělen do sekcí, jenž představují samostatné logické celky systému.
 
-\subsection{Webový portál}
-Pro uživatele bude portál sloužit jako prostředník pro sdílení prezentací – ať už v~rámci portálu mezi jeho uživateli nebo
-posíláním URL odkazů na prezentace v~emailech, příspěvcích na sociálních sítích jako Facebook nebo Twitter a~dalších. V~principu se tak bude podobat portálům jako YouTube, SlideShare nebo GitHub, které se zaměřují na vystavení vlastní tvorby (videí, prezentací, kódu) a~její sdílení.
+\subsection{Webové rozhraní}
+Pro uživatele slouží web jako prostředník pro sdílení prezentací – ať už v~rámci systému mezi jeho uživateli nebo
+posíláním URL odkazů na prezentace v~emailech, příspěvcích na sociálních sítích jako Facebook nebo Twitter a~dalších. V~principu se tak podobá službám jako jsou YouTube, SlideShare nebo GitHub, které se zaměřují na vystavení vlastní tvorby (videí, prezentací, kódu) a~její sdílení.
 
-Sdílení prostřednictvím webového portálu je dvojího typu. Uživatelé mohou sledovat jiné uživatele a~o aktivitách těchto sledovaných uživatelů, například publikace nové prezentace, budou snadněji upozorněni. Druhý typ je pak sdílení opačným směrem – od autora prezentace jednotlivým uživatelům portálu. Uživatele si autor vybere podle uživatelského jména či e-mailu.
+Sdílení prostřednictvím webové aplikace je dvojího typu. Uživatelé mohou sledovat jiné uživatele a~o aktivitách těchto sledovaných uživatelů, například publikace nové prezentace, budou snadněji upozorněni. Druhý typ je pak sdílení opačným směrem – od autora prezentace jednotlivým uživatelům aplikace. Uživatele si autor vybere podle uživatelského jména či \mbox{e-mailu}.
 
 Důležitá je také zpětná vazba od uživatelů prohlížející si prezentace. Řešením je možnost přidávat komentáře k~jednotlivým prezentacím.
 
@@ -419,13 +421,13 @@ Během analýzy byly také vyhledány a~vyzkoušeny již existující služby, j
 
 
 \subsection{SlideShare}
-SlideShare \cite{slideshare} je na internetu velmi známý webový portál pro sdílení prezentací. Obsahuje podobné mechanismy sdílení a~zpětné vazby a~umožňuje prezentace umisťovat na jiné stránky (tzv. embedded prezentace). Prezentace jsou ovšem velmi statické – bez animací a~bez větší interaktivity s~uživatelem. Některé prezentace jsou jen obrázkové, nejde tedy označit text ani následovat odkaz. Největší nevýhodou je, že prezentace nelze na portálu přímo tvořit, lze je pouze nahrávat ve~formátech PDF, PPT a~dalších z~lokálního úložiště. Jakákoliv změna v~prezentaci se tak musí nahrát znovu.
+SlideShare \cite{slideshare} je na internetu velmi známá webová služba pro sdílení prezentací. Obsahuje podobné mechanismy sdílení a~zpětné vazby a~umožňuje prezentace umisťovat na jiné stránky (tzv. embedded prezentace). Prezentace jsou ovšem velmi statické – bez animací a~bez větší interaktivity s~uživatelem. Některé prezentace jsou jen obrázkové, nejde tedy označit text ani následovat odkaz. Největší nevýhodou je, že prezentace nelze přímo tvořit. Lze je pouze nahrávat ve~formátech PDF, PPT a~dalších z~lokálního úložiště. Jakákoliv změna v~prezentaci se tak musí nahrát znovu.
 
 \subsection{Prezi}
 Prezi \cite{prezi} se na rozdíl od ostatních daleko více zaměřuje na grafickou stránku a~zakládá si na kreativitě uživatelů a~vyjádření jejich idejí pomocí celkového vzhledu prezentace. Prezentace se značně liší od běžných prezentací, které známe například z~Microsoft PowerPoint. Jejich použití se hodí hlavně pro vyjádření nějaké myšlenky či vize, méně se hodí pro podání důležitých informací. Velmi dobrou vlastností je živé sdílení, tj. procházení prezentací se synchronizuje mezi více online uživateli. Pro zobrazení prezentace používá technologii Flash.
 
 \subsection{Rvl.io}
-Rvl.io \cite{rvlio} je služba od autora knihovny reveal.js popsané na str. \pageref{chap:revealjs}, kterou také používá pro zobrazení prezentací. Služba umožňuje sdílení i tvorbu prezentací přímo na webu. Sdílení je založeno na předávání adresy URL, poskytuje ale také vkládání prezentace do~jiných stránek, podobně jako SlideShare. Pro úpravu prezentací využívá WYSIWYG editor, který ale poskytuje jen nezbytné minimum funkcí. Tento portál je velmi mladý a~uveden byl po měsíci od započetí práce na tomto projektu. Služba byla v~době psaní této práce stále ve~fázi beta testování.
+Rvl.io \cite{rvlio} je služba od autora knihovny reveal.js popsané na str. \pageref{chap:revealjs}, kterou také používá pro zobrazení prezentací. Služba umožňuje sdílení i tvorbu prezentací přímo na webu. Sdílení je založeno na předávání adresy URL, poskytuje ale také vkládání prezentace do~jiných stránek, podobně jako SlideShare. Pro úpravu prezentací využívá WYSIWYG editor, který ale poskytuje jen nezbytné minimum funkcí. Tato služba je velmi mladá a~uvedena byla měsíc po započetí práce na tomto projektu. V~době psaní této práce byla stále ve~fázi beta testování.
 
 \subsection{Shrnutí}
 Rvl.io jako jediný z~vybraných systémů používá pro zobrazení prezentací HTML. Také poskytuje možnost tvorby prezentace a~její sdílení, nejvíce se tak podobá zadání tohoto projektu. Neposkytuje ovšem žádnou přidanou hodnotu, která by se dala ve~webovém prostředí využít. SlideShare staví do~popředí hlavně sdílení prezentací a~má proto bohaté mechanismy. Služba Prezi, i když velmi vydařená a~propracovaná služba, naopak míří zcela na jinou cílovou skupinu.
@@ -480,7 +482,7 @@ Na klientské prostředí jsou přenášeny výstupy v~podobě HTML stránek. Pr
 
 Dále byla použita Java\-Scriptová knihovna jQuery~\cite{jQuery}, která usnadňuje práci s~HTML dokumentem a~sjednocuje imple\-mentační rozdíly mezi prohlížeči.
 
-Pro vzhled a~grafické uživatelské rozhraní byl použit framework Bootstrap~\cite{bootstrap}, který velmi usnadnil prototypování uživatelského rozhraní portálu bez nutnosti tvořit vzhled a~ladit ho pro každý prohlížeč zvlášť. Dále poskytuje jednoduché metody pro tvorbu nabídek či zobrazení dialogových oken. Výhodou je i to, že Bootstrap poskytuje responsivní design a~tak by se měl web chovat a~zobrazovat korektně i na mobilních zařízeních.
+Pro vzhled a~grafické uživatelské rozhraní byl použit framework Bootstrap~\cite{bootstrap}, který velmi usnadnil prototypování uživatelského rozhraní aplikace bez nutnosti tvořit vzhled a~ladit ho pro každý prohlížeč zvlášť. Dále poskytuje jednoduché metody pro tvorbu nabídek či zobrazení dialogových oken. Výhodou je i to, že Bootstrap poskytuje responsivní design a~tak by se měl web chovat a~zobrazovat korektně i na mobilních zařízeních.
 
 
 \section{Editor}
@@ -507,12 +509,12 @@ Nejdříve byla otestována WYSIWYG knihovna Aloha Editor~\cite{aloha}, která s
 
 Jako další editor byl vyzkoušen Mercury Editor~\cite{mercury}, který se zdál být vhodnější a~komplexnější. I když se jedná o~Java\-Scriptovou knihovnu, je vyvíjena v~Ruby pro použití v~Ruby On Rails aplikacích a~tak bylo hodně věcí přizpůsobeno těmto technologiím (například počítala s~partial pohledy, které se posílají pomocí technologie \nom{AJAX}{Asynchronous Java\-Script and XML} ze~serveru). Nicméně knihovna není na jazyce Ruby závislá a~lze ji použít bez něj.
 
-Zde se ale po chvíli objevily problémy technického rázu – prohlížeče se právě díky neexistujícímu standardu chovaly rozdílně nebo se nechovaly podle očekávání. Výsledkem pak byl například špatný HTML kód nebo kód, který se už nedal nijak pomocí editoru opravit ani smazat. Jedním z~největších problémů bylo vkládání nového řádku. Prohlížeč někdy vložil značku odřádkování \verb|<br>| někdy nový odstavec \verb|<p>|. Chování tak nebylo předvídatelné. 
+Zde se ale po chvíli objevily problémy technického rázu – prohlížeče se právě díky neexistujícímu standardu chovaly rozdílně nebo se nechovaly podle očekávání. Výsledkem pak byl například špatný HTML kód nebo kód, který se už nedal nijak pomocí editoru opravit ani smazat. Jedním z~největších problémů bylo vkládání nového řádku. Prohlížeč někdy vložil značku odřádkování \verb|<br>| a někdy nový odstavec \verb|<p>|. Chování tak nebylo předvídatelné. 
 
 Objevily se i další chyby v~použitelnosti či bugy, na které jsem se pak snažil upozornit\footnote{viz \url{https://github.com/jejacks0n/mercury/issues/253}} autora knihovny. Chyba ale dosud nebyla opravena.
 
 \subsection{Editor založený na jednoduchém značkovacím jazyce}
-Všechny tyto problémy nakonec vyústily k~rozhodnutí použít značkovací jazyk, tzv. Light\-weight markup language, který
+Všechny tyto problémy nakonec vyústily k~rozhodnutí použít značkovací jazyk, tzv. light\-weight markup language, který
 převádí text do~HTML. V~poslední době získávají tyto jazyky velkou popularitu kvůli jednoduchosti a~velmi dobré podobě
 výsledného HTML kódu.
 
@@ -778,7 +780,7 @@ Pro testování byly vybrány dvě stránky, které představují pro aplikaci v
 
 
 \chapter{Zhodnocení a~budoucí vývoj}
-Práce na tomto projektu byla velmi zajímavá. Vyzkoušel jsem si řadu nových technologií, zejména mě zaujal AngularJS, který určitě budu dál sledovat a~předpokládám, že ho využiji i budoucnu. Kromě AngularJS jsem si poprvé vyzkoušel i migrace databází v~PHP a~i když to není tak automatické jako třeba v~Ruby on Rails, pracuje se s~knihovnou velmi dobře.
+Práce na tomto projektu byla velmi zajímavá. Vyzkoušel jsem si řadu nových technologií, zejména mě zaujal AngularJS, který určitě budu dále sledovat a~předpokládám, že ho využiji i budoucnu. Kromě AngularJS jsem si poprvé vyzkoušel i migrace databází v~PHP a~i když to není tak automatické jako třeba v~Ruby on Rails, pracuje se s~knihovnou velmi dobře.
 
 Výbornou zkušeností bylo také nasazení projektu na cloudové PaaS systémy. Tyto služby jsou nejen jednoduché na použití, ale poskytují široké možnosti správy a~škálování aplikací. Platforma PHP ovšem není připravena na více instancí aplikace a~je proto nutné s~řešením počítat již při vývoji aplikace. Placená řešení cloudových systémů ovšem mnohanásobně převyšují výhody vlastního serveru nebo běžných webhostingových služeb.
 
@@ -803,18 +805,18 @@ Pro uživatele by bylo výhodné přidat i podporu pro import a~export z/do růz
 Při práci na tomto projektu jsem se pokusil o~nástroj pro import z~formátu Microsoft PowerPoint. Jednalo se ovšem jen o~jednoúčelový nástroj pro několik prezentací, značně přizpůsobený jednomu typu prezentace. Importován byl pouze text každého snímku, tj. bez vzhledu či obrázků.
 
 \subsection{Členění a~seskupování prezentací}
-Prezentace se nyní dají vyhledávat jen pomocí názvu nebo podle autora. Další možností by bylo přidat k~prezentacím štítky. Vyhledávání by pak mohlo fungovat i podle štítků. Také sdílení by šlo vylepšit tím, že by uživatel mohl sledovat jednotlivé štítky a~být upozorněn v~případě nové prezentace s~daným štítkem.
+Prezentace se nyní dají vyhledávat jen pomocí názvu nebo podle autora. Další možností by bylo přidat k~prezentacím krátké popisky, tzv. štítky. Vyhledávání by pak mohlo fungovat i podle těchto štítků. Také sdílení by šlo vylepšit tím, že by uživatel mohl sledovat jednotlivé štítky a~být upozorněn v~případě nové prezentace s~daným štítkem.
 
-Prezentace by si také zasloužily lepší organizaci. Často se stává, že jeden uživatel má více prezentací, které spolu souvisí (například prezentace z~přednášek jednoho předmětu nebo kurzu). Strukturování prezentací do~jakýchsi složek nebo seznamů by tak bylo užitečnou vlastností. Spolu s tím by šlo rozšířit i sdílení těchto seznamů.
+Prezentace by si také zasloužily lepší organizaci. Často se stává, že jeden uživatel má více prezentací, které spolu souvisí (například prezentace z~přednášek jednoho předmětu nebo kurzu). Strukturování prezentací do~jakýchsi složek nebo seznamů by tak bylo užitečnou vlastností. Spolu s tím by bylo příhodné implementovat i sdílení těchto seznamů.
 
 \subsection{Bezpečnost}
 Důležitou částí dalšího vývoje by mělo být zaměření se na bezpečnost systému. V~tuto chvíli mě znepokojuje existující možnost zanesení škodlivého Java\-Scriptového kódu do~prezentace při úpravě vzhledu prezentace. V~některých prohlížečích totiž lze v~CSS spouštět Java\-Scriptový kód. Řešením by bylo CSS kód automaticky projít a~všechny výskyty Java\-Scriptu odstranit. Není to ale tak jednoduché, například kvůli komentářům či dalším technikám obfuskace kódu.
 
 
 \chapter{Závěr}
-Výsledkem této bakalářské práce je funkční základ webového portálu pro tvorbu a~sdílení prezentací založených na technologii HTML. Navržený systém byl nasazen na produkčním serveru\footnote{Adresa aplikace je \url{http://slide-it.eu01.aws.af.cm/}} pomocí cloudové služby AppFog. Požadovaná funkčnost byla analyzována, imple\-mentována a~otestována, stále je ale prostor pro další vylepšení a~rozšiřování systému.
+Výsledkem této bakalářské práce je funkční základ webové aplikace pro tvorbu a~sdílení prezentací založených na technologii HTML. Navržený systém byl nasazen na produkčním serveru\footnote{Adresa aplikace je \url{http://slide-it.eu01.aws.af.cm/}} pomocí cloudové služby AppFog. Požadovaná funkčnost byla analyzována, imple\-mentována a~otestována, stále je ale prostor pro další vylepšení a~rozšiřování systému.
 
-Projektu se ale nevyhnuly určité problémy, ať už technologické či časové. Nedostalo se tak na spousty nápadů, které by systém posunuly kvalitativně dál, aby mohl konkurovat zavedeným portálům. Přesto jsem ale s~projektem a~svou prací na něm spokojen. Vyzkoušel jsem si několik nových a~zajímavých technologií, které mě obohatily a~které určitě využiji i v~budoucnu.
+Projektu se ale nevyhnuly určité problémy, ať už technologické či časové. Nedostalo se tak na spousty nápadů, které by systém posunuly kvalitativně dál, aby mohl konkurovat zavedeným službám. Přesto jsem ale s~projektem a~svou prací na něm spokojen. Vyzkoušel jsem si několik nových a~zajímavých technologií, které mě obohatily a~které určitě využiji i v~budoucnu.
 
 
 
@@ -941,14 +943,14 @@ objectPos=c]{figure}{\includegraphics[width=20cm]{PRO-img/user-load.png}}%
 
 \chapter{Obsah přiloženého CD}
 
-%\begin{figure}[h]
-%\begin{center}
-%\includegraphics[width=14cm]{figures/seznamcd}
-%\caption{Seznam přiloženého CD --- příklad}
-%\label{fig:seznamcd}
-%\end{center}
-%\end{figure}
-
+\dirtree{%
+.1 src/\DTcomment{zdrojové soubory aplikace}.
+.1 text/.
+.2 src/\DTcomment{zdrojové soubory dokumentu}.
+.2 jezdirad-thesis-2013.pdf\DTcomment{elektronická verze dokumentu ve formátu PDF}.
+.1 instalacni\textunderscore{}manual.pdf\DTcomment{návod na instalaci aplikace}.
+.1 readme.txt\DTcomment{obsah CD a důležité informace}.
+}
 
 
 \end{document}
