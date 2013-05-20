@@ -27,7 +27,7 @@
 \usepackage[
 pdftitle={\WorkTitle},				% nastaví v~informacích o~pdf název
 pdfauthor={\FirstandFamilyName},	% nastaví v~informacích o~pdf autora
-colorlinks=false,					% před tiskem doporučujeme nastavit na false, aby odkazy a~url nebyly šedé při ČB tisku
+colorlinks=true,					% před tiskem doporučujeme nastavit na false, aby odkazy a~url nebyly šedé při ČB tisku
 breaklinks=true,
 urlcolor=red,
 citecolor=blue,
@@ -108,6 +108,8 @@ unicode=true,
 
 \usepackage{dirtree}
 
+\usepackage{pdfpages}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % vlastní dokument
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -137,6 +139,9 @@ unicode=true,
 %	\end{enumerate}
 %	\newpage
 %	}
+
+	\pagenumbering{roman}
+	\includepdf{zadani.pdf}
 
 	%%%%%%%%%%%%%%%%%%%%%%%%%%    
 	% Titulni stranka / Title page 
@@ -198,7 +203,7 @@ Protože na trhu již existují služby, které podobné možnosti nabízejí, c
 Aplikace bude poskytovat prostředky pro zjednodušení tohoto cíle. V prezentacích tak bude možné barevně zvýraznit kód programovacích jazyků či zobrazit matematické vzorce pomocí syntaxe \LaTeX. Navíc bude možné do~snímků vkládat kontrolní otázky, na které budou moci uživatelé odpovídat, a tak si ověřit své znalosti, případně lze přidat i doplňující text s odkazem na konkrétní snímek s odpovědí. Stejně tak je důležité, aby tyto prezentace byly použitelné i mimo přednášku a podaly významné informace i bez mluveného slova, například pro domácí přípravu nebo vlastní rozvoj. 
 
 \section{Příležitosti}
-Od práce na tomto projektu si slibuji větší porozumění technologiím HTML5 a~Java\-Scriptu. Zajímavou příležitostí je i vyzkoušení si tvorby webových stránek, které nejsou jen dalším typickým informačním systémem. V~tomto projektu lze najít spoustu problémů, ale také nové a~zajímavé technologie, na kterých si vyzkouším vývoj moderních klientských aplikací.
+Od práce na tomto projektu si slibuji větší porozumění technologii HTML5 a~Java\-Scriptu. Zajímavou příležitostí je i vyzkoušení si tvorby webových stránek, které nejsou jen dalším typickým informačním systémem. V~tomto projektu lze najít spoustu problémů, ale také nové a~zajímavé technologie, na kterých si vyzkouším vývoj moderních klientských aplikací.
 
 
 
@@ -421,7 +426,7 @@ Během analýzy byly také vyhledány a~vyzkoušeny již existující služby, j
 
 
 \subsection{SlideShare}
-SlideShare \cite{slideshare} je na internetu velmi známá webová služba pro sdílení prezentací. Obsahuje podobné mechanismy sdílení a~zpětné vazby a~umožňuje prezentace umisťovat na jiné stránky (tzv. embedded prezentace). Prezentace jsou ovšem velmi statické – bez animací a~bez větší interaktivity s~uživatelem. Některé prezentace jsou jen obrázkové, nejde tedy označit text ani následovat odkaz. Největší nevýhodou je, že prezentace nelze přímo tvořit. Lze je pouze nahrávat ve~formátech PDF, PPT a~dalších z~lokálního úložiště. Jakákoliv změna v~prezentaci se tak musí nahrát znovu.
+SlideShare \cite{slideshare} je velmi známá webová služba pro sdílení prezentací. Obsahuje podobné mechanismy sdílení a~zpětné vazby a~umožňuje prezentace umisťovat na jiné stránky (tzv. embedded prezentace). Prezentace jsou ovšem velmi statické – bez animací a~bez větší interaktivity s~uživatelem. Některé prezentace jsou jen obrázkové, nejde tedy označit text ani následovat odkaz. Největší nevýhodou je, že prezentace nelze přímo tvořit. Lze je pouze nahrávat ve~formátech PDF, PPT a~dalších z~lokálního úložiště. Jakákoliv změna v~prezentaci se tak musí nahrát znovu.
 
 \subsection{Prezi}
 Prezi \cite{prezi} se na rozdíl od ostatních daleko více zaměřuje na grafickou stránku a~zakládá si na kreativitě uživatelů a~vyjádření jejich idejí pomocí celkového vzhledu prezentace. Prezentace se značně liší od běžných prezentací, které známe například z~Microsoft PowerPoint. Jejich použití se hodí hlavně pro vyjádření nějaké myšlenky či vize, méně se hodí pro podání důležitých informací. Velmi dobrou vlastností je živé sdílení, tj. procházení prezentací se synchronizuje mezi více online uživateli. Pro zobrazení prezentace používá technologii Flash.
@@ -449,7 +454,7 @@ Návrhový vzor Model-View-Presenter řeší problém oddělení datové vrstvy,
 \begin{itemize}
 	\item \textbf{Model} – poskytuje rozhraní pro data určená k~zobrazení
 	\item \textbf{View} (pohled) – vykresluje data modelu a~směruje uživatelské příkazy presenteru
-	\item \textbf{Presenter} – prostředník mezi modelem a~pohledem. Získává data z~modelu a~upravuje je pro zobrazení v~pohledu. Řeší události vyvolané uživatelem
+	\item \textbf{Presenter} – prostředník mezi modelem a~pohledem. Získává data z~modelu a~upravuje je pro zobrazení v~pohledu. Řeší události vyvolané uživatelem.
 \end{itemize}
 
 \subsection{Architektura aplikační logiky}
@@ -482,17 +487,17 @@ Na klientské prostředí jsou přenášeny výstupy v~podobě HTML stránek. Pr
 
 Dále byla použita Java\-Scriptová knihovna jQuery~\cite{jQuery}, která usnadňuje práci s~HTML dokumentem a~sjednocuje imple\-mentační rozdíly mezi prohlížeči.
 
-Pro vzhled a~grafické uživatelské rozhraní byl použit framework Bootstrap~\cite{bootstrap}, který velmi usnadnil prototypování uživatelského rozhraní aplikace bez nutnosti tvořit vzhled a~ladit ho pro každý prohlížeč zvlášť. Dále poskytuje jednoduché metody pro tvorbu nabídek či zobrazení dialogových oken. Výhodou je i to, že Bootstrap poskytuje responsivní design a~tak by se měl web chovat a~zobrazovat korektně i na mobilních zařízeních.
+Pro vzhled a~grafické uživatelské rozhraní byl použit framework Bootstrap~\cite{bootstrap}, který velmi usnadnil prototypování uživatelského rozhraní aplikace bez nutnosti tvořit vzhled a~ladit ho pro každý prohlížeč zvlášť. Dále poskytuje jednoduché metody pro tvorbu nabídek či zobrazení dialogových oken. Výhodou je i to, že Bootstrap poskytuje responsivní design a~tak by se web měl chovat a~zobrazovat korektně i na mobilních zařízeních.
 
 
 \section{Editor}
 Editoru prezentací byl přikládán větší význam, neboť bez této komponenty by systém nemohl realizovat myšlenku tohoto projektu. Značně se také liší od ostatních obyčejných webových stránek, jelikož se jedná z~větší části o~ryze klientskou jednostránkovou mini\-aplikaci.
 
-Právě proto používá editor pár technologií navíc. Jako nejdůležitější se ukázalo použití Java\-Scriptového \nom{MVC}{Model-View-Controller} frameworku AngularJS~\cite{angular}. Jeho hlavní předností je dvoucestné provázání dat mezi pohledem (view) a~modelem na straně klienta. Každá změna v~modelu se pak automaticky propaguje do~pohledu a~naopak. Snižuje se tak množství kódu, který otrocky nastavuje nebo zobrazuje data při jednotlivé změně. 
+Právě proto používá editor pár technologií navíc. Jako nejdůležitější se ukázalo použití Java\-Scriptového \nom{MVC}{Model-View-Controller} frameworku AngularJS~\cite{angular}. Jeho hlavní předností je dvoucestné provázání dat mezi pohledem (view) a~modelem na straně klienta. Každá změna v~modelu se pak automaticky propaguje do~pohledu a~naopak. Snižuje se tak množství kódu, který otrocky nastavuje nebo zobrazuje data při každé změně. 
 
 Pro popis obsahu snímku, jak bylo zmíněno v~analýze, se používá jednoduchý textový značkovací jazyk, který převádí text do~HTML. Pro převod tohoto textu je použita PHP knihovna Texy!~\cite{texy}, která imple\-mentuje vlastní stejnojmenný značkovací jazyk. Výhodou této knihovny je snadná rozšiřitelnost a~také typografické úpravy výsledného textu. Více o~výběru knihovny se dozvíte v~následující kapitole.
 
-Součástí editoru je také panel nástrojů, který doplňuje textový vstup pro popis snímku. Uživateli ulehčí práci s~psaním zdrojového~textu, například možností vložit značky pro tučné písmo či kurzívu atd. Pro panel nástrojů byla použita knihovna Texyla~\cite{texyla}.
+Součástí editoru je také panel nástrojů, který doplňuje textový vstup pro popis snímku. Uživateli ulehčí práci s~psaním zdrojového~textu, například možností vložit značky pro tučné písmo, kurzívu a další. Pro panel nástrojů byla použita knihovna Texyla~\cite{texyla}.
 
 
 
@@ -503,7 +508,7 @@ V této kapitole se dozvíte o~průběhu realizace klientské části aplikace, 
 V~první fázi vývoje jsem se zabýval myšlenkou editoru prezentace jako hlavní komponenty, bez které by projekt neplnil požadovanou funkci. Následující text popisuje průběh práce na prototypu editoru prezentace.
 
 \subsection{WYSIWYG editor}
-Při prvním prototypování editoru snímků prezentace se počítalo s~použitím WYSIWYG editoru, tedy editoru, kde jsou změny vidět v~reálném čase a~uživatel při samotné úpravě snímků okamžitě vidí, jak bude vypadat konečný výsledek. Výhodou je, že uživatel nepotřebuje znát ani jazyk HTML, i když knihovny často poskytují i možnost kód HTML upravovat. Existuje mnoho knihoven, které WYSIWYG editor různě imple\-mentují. Protože ale neexistuje žádný standard, každý prohlížeč se chová trochu jinak a~zároveň každá knihovna si různé věci imple\-mentuje po svém.
+Při prvním prototypování editoru snímků prezentace se počítalo s~použitím WYSIWYG editoru, tedy editoru, kde jsou změny vidět v~reálném čase a~uživatel při samotné úpravě snímků okamžitě vidí, jak bude vypadat konečný výsledek. Výhodou je, že uživatel nepotřebuje znát ani jazyk HTML, i když knihovny často poskytují i možnost kód HTML upravovat. Existuje mnoho knihoven, které WYSIWYG editor imple\-mentují. Protože ale neexistuje žádný standard, každý prohlížeč se chová trochu jinak a~zároveň každá knihovna si různé věci imple\-mentuje po svém.
 
 Nejdříve byla otestována WYSIWYG knihovna Aloha Editor~\cite{aloha}, která se nejčastěji používá v~\nom{CMS}{Content Management System} systémech. Nabízí několik zajímavých vlastností jako je např. repositář – prohlížeč obrázků, souborů či vlastních uživatelských objektů. Potíže ovšem nastaly se zobrazením panelu nástrojů a~špatnou podporou CSS3 transformací, které jsou použity ve~vzhledu deck.js prezentací.
 
@@ -511,7 +516,7 @@ Jako další editor byl vyzkoušen Mercury Editor~\cite{mercury}, který se zdá
 
 Zde se ale po chvíli objevily problémy technického rázu – prohlížeče se právě díky neexistujícímu standardu chovaly rozdílně nebo se nechovaly podle očekávání. Výsledkem pak byl například špatný HTML kód nebo kód, který se už nedal nijak pomocí editoru opravit ani smazat. Jedním z~největších problémů bylo vkládání nového řádku. Prohlížeč někdy vložil značku odřádkování \verb|<br>| a někdy nový odstavec \verb|<p>|. Chování tak nebylo předvídatelné. 
 
-Objevily se i další chyby v~použitelnosti či bugy, na které jsem se pak snažil upozornit\footnote{viz \url{https://github.com/jejacks0n/mercury/issues/253}} autora knihovny. Chyba ale dosud nebyla opravena.
+Objevily se i další chyby v~použitelnosti či bugy, na které jsem se pak snažil upozornit\footnote{viz \url{https://github.com/jejacks0n/mercury/issues/253}} autora knihovny.
 
 \subsection{Editor založený na jednoduchém značkovacím jazyce}
 Všechny tyto problémy nakonec vyústily k~rozhodnutí použít značkovací jazyk, tzv. light\-weight markup language, který
@@ -520,9 +525,9 @@ výsledného HTML kódu.
 
 Asi nejvíce používaným jazykem, hlavně ve~světě IT, je Mark\-Down~\cite{markdown}, který byl původně napsán v~jazyce Perl. Vzniklo mnoho portů této knihovny do~různých jazyků, včetně PHP. Port knihovny pro PHP je ovšem velmi komplexní a~zdálo se nemožné ho upravit pro potřeby imple\-mentace dalších požadovaných funkcí do~prezentace.
 
-Proto nakonec bylo rozhodnuto využít jazyk Texy!~\cite{texy}, který je jazyku Mark\-Down podobný, ovšem syntaxe se občas liší. Knihovna Texy! je ovšem velmi dobře rozdělená na logické jednotky – moduly. Jednotlivé konverze (např. nadpis nebo tučné písmo) se pak provádí ve~funkcích těchto modulů. Za~největší výhodu ale považuji rozšiřitelnost a~upravitelnost knihovny. Moduly lze konfigurovat či vypínat a~nechybí ani možnost definovat vlastní konverze. Lze se tak snadněji přiblížit syntaxi jazyku Mark\-Down, primárním cílem toto ovšem nebylo.
+Proto nakonec bylo rozhodnuto využít jazyk Texy!~\cite{texy}, který je jazyku Mark\-Down podobný, ovšem syntaxe se občas liší. Knihovna Texy! je ovšem velmi dobře rozdělená na logické jednotky – moduly. Jednotlivé konverze (např. nadpis nebo tučné písmo) se pak provádí ve~funkcích těchto modulů. Za~největší výhodu ale považuji rozšiřitelnost a~upravitelnost knihovny. Moduly lze konfigurovat či vypínat a~nechybí ani možnost definovat vlastní konverze. Lze se tak snadněji přiblížit známé syntaxi jazyku Mark\-Down, to ovšem nebylo primárním cílem tohoto projektu.
 
-Výhodou je také možnost specifikovat CSS třídy nebo určit zarovnání textu či obrázku. To je vlastnost, kterou jazyk Mark\-Down nepodporuje. Značným kladem knihovny Texy! je také vynikající podpora typografie. Například sekvenci znaků „\lstinline|+-|“ nahradí za~jediný znak „$\pm$“, jednoduchou pomlčku nahrazuje za~spojovník (pokud je to ve~větě potřeba), tři tečky nahradí za~jediný znak trojtečky, vkládá nedělitelné mezery za~spojky atp. V~dokumentech jako je webová stránka nebo prezentace se tato vlastnost velmi hodí.
+Výhodou je také možnost specifikovat CSS třídy nebo určit zarovnání textu či obrázku. To je vlastnost, kterou jazyk Mark\-Down nepodporuje. Značným kladem knihovny Texy! je také vynikající podpora typografie. Například sekvenci znaků „\lstinline|+-|“ nahradí za~jediný znak „$\pm$“, jednoduchou pomlčku nahrazuje za~spojovník (pokud je to ve~větě potřeba), tři tečky nahradí za~jediný znak trojtečky, dále vkládá nedělitelné mezery za~spojky atp. V~dokumentech jako je webová stránka nebo prezentace se tato vlastnost velmi hodí.
 
 
 \section{Rozložení editoru}
@@ -606,13 +611,13 @@ Co je cílem scopingu?
 
 [+] získat požadavky od zákazníka
 
-[-] vytvořit rozpočet a~plán projektu
+[-] vytvořit rozpočet a plán projektu
 \end{lstlisting}
 
 
-\begin{figure}[ht]
+\begin{figure}[H]
 	\begin{center}
-		\fbox{\includegraphics[width=14cm]{PRO-img/odpovedi.png}}
+		\fbox{\includegraphics[width=12cm]{PRO-img/odpovedi.png}}
 		\caption{Ukázka snímku s~otázkou a~odpověďmi}
 		\label{fig:odpovedi}
 	\end{center}
@@ -658,11 +663,10 @@ SELECT * FROM `presentations` where `id` = 1;
 
 
 \subsection{Matematické vzorce}
-Další přidanou hodnotou do~prohlížení prezentací bylo zavedení zobrazení matematických vzorců a~rovnic. Není totiž nijak uživatelsky příjemné tyto vzorce vytvářet jako obrázky a~vkládat je pak do~prezentace. Pro imple\-mentaci této vlastnosti byla použita Java\-Scriptová knihovna MathJax~\cite{mathjax}, která automaticky vyhledává zdrojový text ve~formátu \LaTeX~\cite{latex} ve~specifické syntaxi a~následně je vysází pomocí HTML a~CSS za~použití webových fontů. Není tedy potřeba žádných dalších technologií třetích stran, jako například Flash, a~zároveň se nejedná o~obrázky. Vzorce si tak zachovávají všechny vlastnosti okolního textu, jako jsou barva či velikost.
+Další přidanou hodnotou do~prohlížení prezentací bylo zavedení zobrazení matematických vzorců a~rovnic. Není totiž nijak uživatelsky příjemné tyto vzorce vytvářet jako obrázky a~vkládat je pak do~prezentace. Pro imple\-mentaci této vlastnosti byla použita Java\-Scriptová knihovna MathJax~\cite{mathjax}, která automaticky vyhledává zdrojový text ve~formátu \LaTeX~\cite{latex} ve~specifické syntaxi a~následně je vysází pomocí HTML, CSS a~webových fontů. Není tedy potřeba žádných dalších technologií třetích stran, jako například Flash, a~zároveň se nejedná o~obrázky. Vzorce si tak zachovávají všechny vlastnosti okolního textu, jako jsou barva či velikost.
 
 Podmínkou pro vyhledání a~zobrazení vzorců je ohraničení zdrojového textu vzorců oddělovači. Ty jsou dvojího druhu, protože knihovna podporuje zobrazení jak blokových vzorců, tak tzv. inline vzorců, které mohou být součástí odstavce textu. Oddělovače pro inline vzorce jsou \verb|$(| a~\verb|)$|, pro blokové vzorce pak \verb|$$| a~\verb|$$|. Ukázku použití této syntaxe spolu se vzorovým zdrojovým textem několika rovnic vidíte ve~výpisu \ref{lst:rovnice}, výsledný snímek s~vysázenými matematickými rovnicemi vidíte na obrázku \ref{fig:rovnice}.
 
-\newpage
 
 \begin{lstlisting}[caption={Ukázka syntaxe matematických vzorců},label={lst:rovnice},captionpos=b]
 ## Rovnice
@@ -701,9 +705,9 @@ Pro chod systému je nutný spuštěný webový server, na kterém běží PHP. 
 Pro zaručení správného chodu aplikace je také dobré ověřit, zda-li server splňuje požadavky samotného Nette Frameworku. K~tomu lze využít PHP skript jménem Requirements Checker, jenž je frameworkem poskytován. Více o~skriptu, jeho instalaci a~spuštění naleznete v~dokumentaci Nette Frameworku~\cite{checker}.
 
 \section{Realizace nasazení}
-Pro nasazení na produkční prostředí jsem se nejdříve rozhodl využít cloudového systému PHP Fog. Pro malý počet aplikací a~malý rozsah poskytoval své služby zdarma. V~placených řešení bylo pak největší výhodou možnost škálování instancí aplikace či operační paměti nebo velké množství rozšíření, např. analytické nástroje či optimalizační nástroje pro databázi. Server uchovával aplikaci jako Git repositář a~tak pro nahrání nové verze aplikace stačil příkaz \verb|push|.
+Pro nasazení na produkční prostředí jsem se nejdříve rozhodl využít cloudového systému PHP Fog. Pro malý počet aplikací a~malý rozsah poskytoval své služby zdarma. V~placených řešení bylo pak největší výhodou možnost škálování instancí aplikace či operační paměti nebo velké množství rozšíření, např. analytické nástroje či optimalizační nástroje pro databázi. Server uchovával aplikaci jako Git repositář a~tak pro nahrání nové verze aplikace stačil příkaz \verb|git push|.
 
-V listopadu 2012 bylo ovšem oznámeno ukončení služby PHP Fog a~postupné odpojování bezplatných aplikací v~průběhu prosince 2012. Jako náhrada byla doporučena podobná služba AppFog~\cite{appfog} od stejné firmy~\cite{phpfogdiscont}.
+V listopadu 2012 bylo ovšem oznámeno ukončení služby PHP Fog a~postupné odpojování bezplatných aplikací v~průběhu prosince 2012. Jako náhrada byla doporučena podobná služba AppFog~\cite{appfog} od stejné společnosti.~\cite{phpfogdiscont}
 
 AppFog, podobně jako PHP Fog, je cloudová služba poskytující \nomExpl{PaaS}{Platform as a~Service}, tedy výpočetní platformu a~k tomu funkční řešení operačního systému, webového serveru, databáze a~dalších. Aplikaci tak stačí pouze nasadit a~spustit. AppFog na rozdíl od PHP Fogu podporuje kromě jazyka PHP i další, např. Node, Ruby či Javu. Změněn byl i způsob nahrávání aplikace, z~Git repositáře se přešlo na vlastní konzolový nástroj, který dále nabízí i komplexní správu nasazených aplikací.
 
@@ -727,7 +731,7 @@ V současné době se software nejčastěji testuje pomocí automatických nást
 
 Tento projekt je prvním, kdy jsem se snažil používat metodiku TDD. Ne vždy se to však povedlo, neboť jsem byl zvyklý na opačný postup. Nejvíce jsem jej využil při úpravě a~imple\-mentaci nových syntaxí v~knihovně Texy!, kdy jsem si pro požadované výstupy knihovny napsal test předem a~poté dané změny syntaxe imple\-mentoval. Dále pak bylo TDD použito při refaktorování back-endu aplikace.
 
-Metodika TDD se velmi dobře aplikuje a~při vývoji mi pomáhala, avšak zvyklost byla často silnější. V~dalších projektech se budu snažit používat ji ještě více.
+Metodika TDD se velmi dobře aplikuje a~při vývoji mi pomáhala, avšak zvyklost byla často silnější. V~dalších projektech se budu snažit ji používat důkladněji.
 
 
 \section{Jednotkové testy}
@@ -847,41 +851,41 @@ breaklines=true]
 
 class PresentationRepositoryTest extends BaseDbTestCase {
 
-	/** @var PresentationRepository */
-	private $repository;
+  /** @var PresentationRepository */
+  private $repository;
 
-	protected function setUp() {
-		parent::setUp();
-		$this->repository = new PresentationRepository($this->container->database);
-	}
+  protected function setUp() {
+    parent::setUp();
+    $this->repository = new PresentationRepository($this->container->database);
+  }
 
-	public function testDeletePresentation() {
-		$pres = $this->repository->create(1, 'testFoo', 'testFoo');
-		$this->assertNotNull($this->repository->getById($pres->id));
+  public function testDeletePresentation() {
+    $pres = $this->repository->create(1, 'testFoo', 'testFoo');
+    $this->assertNotNull($this->repository->getById($pres->id));
 
-		$this->repository->delete($pres->id, $pres->author->id);
+    $this->repository->delete($pres->id, $pres->author->id);
 
-		$this->assertNull($this->repository->getById($pres->id));
-	}
+    $this->assertNull($this->repository->getById($pres->id));
+  }
 
-	public function testChangeNameAndSlug() {
-		$pres1 = $this->repository->getById(1);
-		$this->repository->changeNameAndSlug($pres1, 'test foo name', 'test foo slug');
+  public function testChangeNameAndSlug() {
+    $pres1 = $this->repository->getById(1);
+    $this->repository->changeNameAndSlug($pres1, 'test foo name', 'test foo slug');
 
-		$pres2 = $this->repository->getById(1);
-		$this->assertEquals('test foo name', $pres2->name);
-		$this->assertEquals('test-foo-slug', $pres2->slug);
+    $pres2 = $this->repository->getById(1);
+    $this->assertEquals('test foo name', $pres2->name);
+    $this->assertEquals('test-foo-slug', $pres2->slug);
 
-		$this->assertEquals($pres1->name, $pres2->name);
-		$this->assertEquals($pres1->slug, $pres2->slug);
-	}
+    $this->assertEquals($pres1->name, $pres2->name);
+    $this->assertEquals($pres1->slug, $pres2->slug);
+  }
 
-	public function testChangeNameAndSlugToExisting() {
-		$this->setExpectedException('DuplicateEntryException');
+  public function testChangeNameAndSlugToExisting() {
+    $this->setExpectedException('DuplicateEntryException');
 
-		$pres = $this->repository->getById(1);
-		$this->repository->changeNameAndSlug($pres, 'testFooName', 'test2');
-	}
+    $pres = $this->repository->getById(1);
+    $this->repository->changeNameAndSlug($pres, 'testFooName', 'test2');
+  }
 
 }
 \end{lstlisting}
@@ -896,31 +900,31 @@ breaklines=true]
 
 class SeleniumTest extends PHPUnit_Extensions_SeleniumTestCase {
 
-	public function setUp() {
-		parent::setUp();
-		$this->setBrowser("*firefox");
-		$this->setBrowserUrl($this->url);
-	}
+  public function setUp() {
+    parent::setUp();
+    $this->setBrowser("*firefox");
+    $this->setBrowserUrl($this->url);
+  }
 
-	private function loginTest() {
-		$this->open($this->url . '/sign/in');
+  private function loginTest() {
+    $this->open($this->url . '/sign/in');
 
-		// bad username
-		$this->type("id=frmsignInForm-username", "wrongTester");
-		$this->type("id=frmsignInForm-password", "test");
-		$this->click("id=frmsignInForm-send");
-		$this->waitForPageToLoad("10000");
-		$this->assertTextPresent("'wrongTester'");
-		$this->assertTextPresent("not found");
+    // bad username
+    $this->type("id=frmsignInForm-username", "wrongTester");
+    $this->type("id=frmsignInForm-password", "test");
+    $this->click("id=frmsignInForm-send");
+    $this->waitForPageToLoad("10000");
+    $this->assertTextPresent("'wrongTester'");
+    $this->assertTextPresent("not found");
 
-		// bad password
-		$this->type("id=frmsignInForm-username", "tester");
-		$this->type("id=frmsignInForm-password", "BadBadBadPassword");
-		$this->click("id=frmsignInForm-send");
-		$this->waitForPageToLoad("10000");
-		$this->assertTextPresent("Invalid password");
-	}
-	
+    // bad password
+    $this->type("id=frmsignInForm-username", "tester");
+    $this->type("id=frmsignInForm-password", "BadBadBadPassword");
+    $this->click("id=frmsignInForm-send");
+    $this->waitForPageToLoad("10000");
+    $this->assertTextPresent("Invalid password");
+  }
+  
 }
 \end{lstlisting}
 
@@ -939,7 +943,7 @@ capVPos=c,%
 rotAngle=90,
 objectPos=c]{figure}{\includegraphics[width=20cm]{PRO-img/user-load.png}}%
 [Graf průběhu zátěžového testu stránky s~prezentacemi uživatele]{Graf průběhu zátěžového testu stránky s~prezentacemi uživatele ukazuje dobu načtení stránky (modrá čára), počet aktivních uživatelů (zelená čára) a~počet požadavků za~sekundu (oranžová čára)}{fig:test2}
-	
+
 
 \chapter{Obsah přiloženého CD}
 
